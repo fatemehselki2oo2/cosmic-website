@@ -29,7 +29,7 @@ const officers = [
 ]
 
 function App() {
-  if (window.location.pathname.match(/^\/design-2-v2\/?$/)) return <Design2V2 />
+  if (window.location.pathname === '/' || window.location.pathname.match(/^\/design-2-v2\/?$/)) return <Design2V2 />
   const match = window.location.pathname.match(/^\/design-([123])\/?$/)
   if (match) return <DesignPage variant={Number(match[1]) as 1 | 2 | 3} />
 
