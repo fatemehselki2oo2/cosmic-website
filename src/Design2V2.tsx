@@ -1,45 +1,42 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import logo from '../Final Logo Transparent.png'
 import { activities, officers, photos } from './DesignPage'
+import { fetchCosmicEvents, type CosmicEvent } from './pinEvents'
 import './design2v2.css'
 
-type EventItem = {
-  type: string
-  month: string
-  day: string
-  title: string
-  date: string
-  time: string
-  location: string
-  detail: string
-  pinUrl?: string
-}
+type EventItem = CosmicEvent
 
-const events: EventItem[] = [
-  { type: 'General meeting', month: 'SEP', day: '12', title: 'Fall General Body Meeting', date: '2026-09-12', time: '5:30–6:30 PM', location: 'Student Center East · Room TBD', detail: 'Meet the COSMIC community, see what we are planning, and tell us what you want to explore this semester.' },
-  { type: 'Hands-on workshop', month: 'SEP', day: '26', title: 'Scientific Python Foundations', date: '2026-09-26', time: '4:00–5:30 PM', location: '25 Park Place · Lab TBD', detail: 'A beginner-friendly introduction to Python for mathematics, data, and scientific problem solving.' },
-  { type: 'Guest speaker', month: 'OCT', day: '10', title: 'Careers in Scientific Computing', date: '2026-10-10', time: '5:00–6:15 PM', location: 'Urban Life · Room TBD', detail: 'A conversation about technical careers, research, graduate study, and the paths between them.' },
-  { type: 'Project night', month: 'OCT', day: '24', title: 'COSMIC Build Night', date: '2026-10-24', time: '4:30–7:00 PM', location: 'Creative Media Industries Institute', detail: 'Bring an idea or join a team for an open evening of collaborative making and experimentation.' },
-]
+type EventsStatus = 'upcoming' | 'empty' | 'loading' | 'error'
 
 function calendarDate(date: string, time: string) {
-  const startHour = Number(time.match(/\d+/)?.[0] ?? 17)
+  const [clock = '5', minutes = '00'] = time.match(/\d{1,2}:?\d{0,2}/)?.[0].split(':') ?? []
+  const startHour = Number(clock)
   const pm = time.includes('PM') && startHour < 12
   const hour = startHour + (pm ? 12 : 0)
   const compact = date.replaceAll('-', '')
-  return { start: `${compact}T${String(hour).padStart(2, '0')}0000`, end: `${compact}T${String(hour + 1).padStart(2, '0')}0000` }
+  return `${compact}T${String(hour).padStart(2, '0')}${minutes.padStart(2, '0')}00`
 }
 
 function downloadCalendar(event: EventItem) {
-  const { start, end } = calendarDate(event.date, event.time)
+  const start = calendarDate(event.date, event.startTime)
+  const end = calendarDate(event.date, event.endTime)
   const escape = (value: string) => value.replaceAll('\\', '\\\\').replaceAll(',', '\\,').replaceAll(';', '\\;').replaceAll('\n', '\\n')
-  const content = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//COSMIC GSU//Events//EN', 'BEGIN:VEVENT', `UID:${event.date}-${event.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}@cosmic.gsu`, `DTSTART:${start}`, `DTEND:${end}`, `SUMMARY:${escape(event.title)}`, `LOCATION:${escape(event.location)}`, `DESCRIPTION:${escape(event.detail)}`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n')
+  const content = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//COSMIC GSU//Events//EN', 'BEGIN:VEVENT', `UID:${event.id}@cosmic.gsu`, `DTSTART:${start}`, `DTEND:${end}`, `SUMMARY:${escape(event.title)}`, `LOCATION:${escape(event.location ?? 'Location to be announced')}`, `DESCRIPTION:${escape(event.shortDescription)}`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n')
   const url = URL.createObjectURL(new Blob([content], { type: 'text/calendar;charset=utf-8' }))
   const anchor = document.createElement('a')
   anchor.href = url
   anchor.download = `${event.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.ics`
   anchor.click()
   URL.revokeObjectURL(url)
+}
+
+function eventDateParts(date: string) {
+  const value = new Date(`${date}T12:00:00`)
+  return {
+    month: value.toLocaleDateString('en-US', { month: 'short' }).toUpperCase(),
+    day: value.toLocaleDateString('en-US', { day: '2-digit' }),
+    full: value.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+  }
 }
 
 const CalendarIcon = () => <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z"/></svg>
@@ -62,9 +59,71 @@ const StemIcon = ({ type }: { type: string }) => {
 
 const StemRibbon = () => <section className="stem-ribbon" aria-label="COSMIC fields"><div className="v2-wrap">{stemAreas.map(([type, title, caption]) => <article key={type}><StemIcon type={type}/><div><b>{title}</b><span>{caption}</span></div></article>)}</div></section>
 
+function EventCard({ event, featured = false }: { event: EventItem; featured?: boolean }) {
+  const date = eventDateParts(event.date)
+  return <article className={`v2-event ${featured ? 'featured' : ''}`}>
+    <span className="v2-event-orbit" aria-hidden="true"/>
+    <div className="v2-date" aria-hidden="true"><span>{date.month}</span><b>{date.day}</b></div>
+    <div className="v2-event-body">
+      <time className="v2-type" dateTime={event.date}>{date.full}</time>
+      <h3>{event.title}</h3>
+      <div className="v2-details">
+        <span><b>Time</b>{event.startTime} – {event.endTime}</span>
+        <span><b>Location</b>{event.location ?? 'Location to be announced'}</span>
+      </div>
+      <p>{event.shortDescription}</p>
+      <div className="v2-event-organizations" aria-label="Participating organizations">{event.organizations.map(organization => <span key={organization}>{organization}</span>)}</div>
+      <div className="v2-event-footer">
+        <button className="v2-button calendar" type="button" onClick={() => downloadCalendar(event)}><CalendarIcon/> Add to Calendar</button>
+        <span className="v2-rsvp" aria-label={`${event.rsvpCount} students RSVPed`}><b>{event.rsvpCount}</b> students interested</span>
+      </div>
+    </div>
+    <div className={`v2-event-image ${event.image ? '' : 'fallback'}`}>
+      {event.image ? <img src={event.image} alt="Students participating in a COSMIC club activity"/> : <div><StemIcon type="network"/><span>Image coming soon</span></div>}
+    </div>
+  </article>
+}
+
+function EventsSection({ status, events }: { status: EventsStatus; events: EventItem[] }) {
+  return <section id="events" className="v2-section v2-events">
+    <div className="v2-wrap">
+      <div className="v2-heading"><div><p className="v2-kicker">See what’s happening next</p><h2>Events & Meetings</h2></div><p>Meet, connect, and get involved. Every gathering is a low-pressure way to learn something, find collaborators, and become part of COSMIC.</p></div>
+      {status === 'loading' && <div className="v2-event-state loading" role="status" aria-live="polite"><span/><span/><span/><p>Loading upcoming COSMIC events…</p></div>}
+      {status === 'error' && <div className="v2-event-state" role="alert"><b>Events are temporarily unavailable.</b><p>We couldn’t load the schedule. Please check back shortly.</p><a className="v2-button secondary" href="/design-2-v2#events">Try again</a></div>}
+      {status === 'empty' && <div className="v2-event-state"><b>No upcoming events yet.</b><p>The next COSMIC meeting is being planned. Follow our PIN page for new dates and announcements.</p><a className="v2-button secondary" href="#join">Stay connected</a></div>}
+      {status === 'upcoming' && <><div className="v2-event-grid">{events.map((event, index) => <EventCard event={event} featured={index === 0} key={event.id}/>)}</div><p className="v2-note">Sample schedule for this UI demo. Event details will later be supplied by the Panther Involvement Network.</p></>}
+    </div>
+  </section>
+}
+
 export default function Design2V2() {
   const [open, setOpen] = useState(false)
+  const [events, setEvents] = useState<EventItem[]>([])
+  const [eventsStatus, setEventsStatus] = useState<EventsStatus>('loading')
   const close = () => setOpen(false)
+  const requestedEventsStatus = new URLSearchParams(window.location.search).get('events')
+
+  useEffect(() => {
+    if (requestedEventsStatus === 'empty' || requestedEventsStatus === 'loading' || requestedEventsStatus === 'error') {
+      setEvents([])
+      setEventsStatus(requestedEventsStatus)
+      return
+    }
+
+    const controller = new AbortController()
+    setEventsStatus('loading')
+    fetchCosmicEvents(controller.signal)
+      .then(nextEvents => {
+        setEvents(nextEvents)
+        setEventsStatus(nextEvents.length ? 'upcoming' : 'empty')
+      })
+      .catch(error => {
+        if (error instanceof DOMException && error.name === 'AbortError') return
+        setEvents([])
+        setEventsStatus('error')
+      })
+    return () => controller.abort()
+  }, [requestedEventsStatus])
   return <div className="cosmic-v2">
     <aside className="v2-switcher" aria-label="Design comparison"><span>Compare</span><a href="/design-2">Original Design 2</a><a className="active" href="/design-2-v2">Enhanced V2</a></aside>
     <header className="v2-header"><nav className="v2-wrap v2-nav" aria-label="Main navigation"><a className="v2-brand" href="#home" onClick={close}><img src={logo} alt="COSMIC logo"/><span>COSMIC</span></a><button className="v2-menu" type="button" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}><span/><span/><span/></button><div className={`v2-links ${open ? 'open' : ''}`}><a href="#about" onClick={close}>About</a><a href="#events" onClick={close}>Events</a><a href="#activities" onClick={close}>Activities</a><a href="#gallery" onClick={close}>Club Moments</a><a href="#leadership" onClick={close}>Leadership</a><a className="v2-button small" href="#join" onClick={close}>Join COSMIC</a></div></nav></header>
@@ -75,7 +134,7 @@ export default function Design2V2() {
 
       <section id="about" className="v2-section v2-about"><NetworkMotif/><div className="v2-wrap v2-split"><div><p className="v2-kicker">More than a classroom</p><h2>Curiosity becomes something you can build.</h2></div><div><p className="v2-big">COSMIC is an undergraduate student organization focused on scientific computing and the intersection of mathematics, science, computing, and innovation.</p><p>We create opportunities for students to explore these areas beyond the classroom through hands-on experiences, collaboration, projects, and professional connections.</p><blockquote>Taking scientific computing beyond the classroom.</blockquote></div></div></section>
 
-      <section id="events" className="v2-section v2-events"><div className="v2-wrap"><div className="v2-heading"><div><p className="v2-kicker">See what’s happening next</p><h2>Events & Meetings</h2></div><p>Meet, connect, and get involved. Every gathering is a low-pressure way to learn something, find collaborators, and become part of COSMIC.</p></div><div className="v2-event-grid">{events.map((event, index) => <article className={`v2-event ${index === 0 ? 'featured' : ''}`} key={event.title}><span className="v2-event-orbit"/><div className="v2-date"><span>{event.month}</span><b>{event.day}</b></div><div className="v2-event-body"><span className="v2-type">{event.type}</span><h3>{event.title}</h3><div className="v2-details"><span>◷ {event.time}</span><span>⌖ {event.location}</span></div><p>{event.detail}</p><div className="v2-event-actions"><button className="v2-button calendar" type="button" onClick={() => downloadCalendar(event)}><CalendarIcon/> Add to Calendar</button>{event.pinUrl ? <a className="v2-button pin" href={event.pinUrl} target="_blank" rel="noreferrer">RSVP on PIN <span>↗</span></a> : <button className="v2-button pin" type="button" aria-describedby={`pin-note-${index}`}>RSVP on PIN <span>↗</span></button>}</div>{!event.pinUrl && <small id={`pin-note-${index}`}>Demo action · event PIN link coming soon</small>}</div>{index === 0 && <div className="v2-event-image"><img src={photos[1][0]} alt={photos[1][1]}/></div>}</article>)}</div><p className="v2-note">Sample schedule for this UI demo. Dates, rooms, and PIN links are placeholders until confirmed.</p></div></section>
+      <EventsSection status={eventsStatus} events={events}/>
 
       <section id="activities" className="v2-section v2-activities"><div className="circuit-trace" aria-hidden="true"><i/><i/><i/><i/></div><div className="v2-wrap"><div className="v2-heading"><div><p className="v2-kicker">Learn by doing</p><h2>Club Activities</h2></div><p>Choose your way in: learn a tool, hear a new perspective, build with a team, or simply meet people.</p></div><div className="v2-activity-grid">{activities.map(([title, text], i) => <article key={title}><span>0{i + 1}</span><div className="activity-symbol"><StemIcon type={stemAreas[i][0]}/></div><h3>{title}</h3><p>{text}</p><b aria-hidden="true">→</b></article>)}</div></div></section>
 
