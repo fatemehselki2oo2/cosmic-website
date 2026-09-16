@@ -1,27 +1,132 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
+import {
+  ArrowRight,
+  CalendarPlus,
+  Clock3,
+  Code2,
+  ExternalLink,
+  FlaskConical,
+  Lightbulb,
+  MapPin,
+  Menu,
+  MessagesSquare,
+  Network,
+  Sigma,
+  Users,
+  Wrench,
+} from 'lucide-react'
 import logo from '../Final Logo Transparent.png'
-import { activities, officers, photos } from './DesignPage'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemGroup,
+  ItemMedia,
+  ItemSeparator,
+  ItemTitle,
+} from '@/components/ui/item'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
+import { Skeleton } from '@/components/ui/skeleton'
 import { fetchCosmicEvents, type CosmicEvent } from './pinEvents'
 import './design2v2.css'
 
-type EventItem = CosmicEvent
-
 type EventsStatus = 'upcoming' | 'empty' | 'loading' | 'error'
+
+const navItems = [
+  ['About', '#about'],
+  ['Events', '#events'],
+  ['Programs', '#programs'],
+  ['Leadership', '#leadership'],
+]
+
+const disciplines = [
+  { label: 'Mathematics', note: 'Model patterns', icon: Sigma },
+  { label: 'Computing', note: 'Build with code', icon: Code2 },
+  { label: 'Science', note: 'Test ideas', icon: FlaskConical },
+  { label: 'Community', note: 'Learn together', icon: Users },
+]
+
+const programs = [
+  {
+    stage: 'Learn a tool',
+    title: 'Hands-on workshops',
+    text: 'Practice programming, data analysis, scientific computing, and modeling with other students in the room.',
+    example: 'Start with a Python workshop: clean a small dataset, plot what you find, and leave with a working notebook.',
+    icon: Wrench,
+  },
+  {
+    stage: 'Try it with other students',
+    title: 'Community & connections',
+    text: 'Meet students across majors and connect with people who share your curiosity about scientific computing.',
+    example: 'Pair up for a short data investigation, compare approaches, and ask the questions that would be harder to ask alone.',
+    icon: Network,
+  },
+  {
+    stage: 'Build or investigate something',
+    title: 'Projects & hackathons',
+    text: 'Join a small team, try an idea, and turn mathematics, data, or code into something you can show.',
+    example: 'Take a computational modeling exercise further during a project night or shape it into a weekend hackathon build.',
+    icon: Lightbulb,
+  },
+  {
+    stage: 'Share the result',
+    title: 'Guest conversations',
+    text: 'Hear how faculty, researchers, and industry professionals use technical skills in their day-to-day work.',
+    example: 'Walk peers through a result, trade feedback, and hear how a guest researcher would approach the same problem.',
+    icon: MessagesSquare,
+  },
+]
+
+const officerRoles = [
+  ['President', 'Club direction & community'],
+  ['Vice President', 'Programs & partnerships'],
+  ['Secretary', 'Communication & records'],
+  ['Treasurer', 'Resources & planning'],
+]
 
 function calendarDate(date: string, time: string) {
   const [clock = '5', minutes = '00'] = time.match(/\d{1,2}:?\d{0,2}/)?.[0].split(':') ?? []
   const startHour = Number(clock)
   const pm = time.includes('PM') && startHour < 12
-  const hour = startHour + (pm ? 12 : 0)
-  const compact = date.replaceAll('-', '')
-  return `${compact}T${String(hour).padStart(2, '0')}${minutes.padStart(2, '0')}00`
+  const amAtNoon = time.includes('AM') && startHour === 12
+  const hour = amAtNoon ? 0 : startHour + (pm ? 12 : 0)
+  return `${date.replaceAll('-', '')}T${String(hour).padStart(2, '0')}${minutes.padStart(2, '0')}00`
 }
 
-function downloadCalendar(event: EventItem) {
-  const start = calendarDate(event.date, event.startTime)
-  const end = calendarDate(event.date, event.endTime)
+function downloadCalendar(event: CosmicEvent) {
   const escape = (value: string) => value.replaceAll('\\', '\\\\').replaceAll(',', '\\,').replaceAll(';', '\\;').replaceAll('\n', '\\n')
-  const content = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//COSMIC GSU//Events//EN', 'BEGIN:VEVENT', `UID:${event.id}@cosmic.gsu`, `DTSTART:${start}`, `DTEND:${end}`, `SUMMARY:${escape(event.title)}`, `LOCATION:${escape(event.location ?? 'Location to be announced')}`, `DESCRIPTION:${escape(event.shortDescription)}`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n')
+  const content = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//COSMIC GSU//Events//EN',
+    'BEGIN:VEVENT',
+    `UID:${event.id}@cosmic.gsu`,
+    `DTSTART:${calendarDate(event.date, event.startTime)}`,
+    `DTEND:${calendarDate(event.date, event.endTime)}`,
+    `SUMMARY:${escape(event.title)}`,
+    `LOCATION:${escape(event.location ?? 'Location to be announced')}`,
+    `DESCRIPTION:${escape(event.shortDescription)}`,
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\r\n')
   const url = URL.createObjectURL(new Blob([content], { type: 'text/calendar;charset=utf-8' }))
   const anchor = document.createElement('a')
   anchor.href = url
@@ -30,88 +135,121 @@ function downloadCalendar(event: EventItem) {
   URL.revokeObjectURL(url)
 }
 
-function eventDateParts(date: string) {
+function eventDate(date: string) {
   const value = new Date(`${date}T12:00:00`)
   return {
-    month: value.toLocaleDateString('en-US', { month: 'short' }).toUpperCase(),
+    month: value.toLocaleDateString('en-US', { month: 'short' }),
     day: value.toLocaleDateString('en-US', { day: '2-digit' }),
     full: value.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
   }
 }
 
-const CalendarIcon = () => <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z"/></svg>
-
-const NetworkMotif = () => <div className="network-motif" aria-hidden="true"><span className="node n1"/><span className="node n2"/><span className="node n3"/><span className="node n4"/><span className="node n5"/><i className="edge e1"/><i className="edge e2"/><i className="edge e3"/><i className="edge e4"/><b>{'{ }'}</b></div>
-
-const stemAreas = [
-  ['math', 'Mathematics', 'Model patterns'],
-  ['code', 'Computing', 'Build with code'],
-  ['science', 'Science', 'Test ideas'],
-  ['network', 'Community', 'Solve together'],
-]
-
-const StemIcon = ({ type }: { type: string }) => {
-  if (type === 'math') return <svg viewBox="0 0 56 56" aria-hidden="true"><path d="M5 42c8 0 10-25 19-25s8 27 17 27c4 0 7-7 10-15"/><circle cx="24" cy="17" r="2.5"/><path className="soft" d="M6 47h44M10 9v38"/></svg>
-  if (type === 'code') return <svg viewBox="0 0 56 56" aria-hidden="true"><rect className="soft" x="5" y="8" width="46" height="39" rx="5"/><path d="m22 21-7 7 7 7m12-14 7 7-7 7m-7 5 5-24"/></svg>
-  if (type === 'science') return <svg viewBox="0 0 56 56" aria-hidden="true"><ellipse cx="28" cy="28" rx="22" ry="8"/><ellipse cx="28" cy="28" rx="22" ry="8" transform="rotate(60 28 28)"/><ellipse cx="28" cy="28" rx="22" ry="8" transform="rotate(120 28 28)"/><circle cx="28" cy="28" r="3"/></svg>
-  return <svg viewBox="0 0 56 56" aria-hidden="true"><path d="M12 15 27 27m5 2 13-13M28 32 17 44m16-11 11 10"/><circle cx="10" cy="13" r="5"/><circle cx="29" cy="29" r="6"/><circle cx="46" cy="14" r="5"/><circle cx="15" cy="46" r="5"/><circle cx="46" cy="45" r="5"/></svg>
+function EventCard({ event }: { event: CosmicEvent }) {
+  const date = eventDate(event.date)
+  return (
+    <Card className="club-event-card">
+      {event.image && <img className="club-event-image" src={event.image} alt="" />}
+      <div className="club-event-layout">
+        <div className="club-date-block" aria-hidden="true"><span>{date.month}</span><strong>{date.day}</strong></div>
+        <div className="club-event-copy">
+          <CardHeader>
+            <Badge variant="outline" className="club-event-badge">Upcoming event</Badge>
+            <CardTitle>{event.title}</CardTitle>
+            <CardDescription>{event.shortDescription}</CardDescription>
+          </CardHeader>
+          <CardContent className="club-event-details">
+            <span><Clock3 /> <time dateTime={event.date}>{date.full}, {event.startTime}–{event.endTime}</time></span>
+            <span><MapPin /> {event.location ?? 'Location to be announced'}</span>
+          </CardContent>
+          <CardFooter className="club-event-footer">
+            <Button variant="outline" size="lg" onClick={() => downloadCalendar(event)}>
+              <CalendarPlus data-icon="inline-start" /> Add to calendar
+            </Button>
+            {event.organizations.length > 0 && <span className="club-hosted-by">Hosted by {event.organizations.join(' · ')}</span>}
+          </CardFooter>
+        </div>
+      </div>
+    </Card>
+  )
 }
 
-const StemRibbon = () => <section className="stem-ribbon" aria-label="COSMIC fields"><div className="v2-wrap">{stemAreas.map(([type, title, caption]) => <article key={type}><StemIcon type={type}/><div><b>{title}</b><span>{caption}</span></div></article>)}</div></section>
-
-function EventCard({ event, featured = false }: { event: EventItem; featured?: boolean }) {
-  const date = eventDateParts(event.date)
-  return <article className={`v2-event ${featured ? 'featured' : ''}`}>
-    <span className="v2-event-orbit" aria-hidden="true"/>
-    <div className="v2-date" aria-hidden="true"><span>{date.month}</span><b>{date.day}</b></div>
-    <div className="v2-event-body">
-      <time className="v2-type" dateTime={event.date}>{date.full}</time>
-      <h3>{event.title}</h3>
-      <div className="v2-details">
-        <span><b>Time</b>{event.startTime} – {event.endTime}</span>
-        <span><b>Location</b>{event.location ?? 'Location to be announced'}</span>
+function EventsSection({ status, events }: { status: EventsStatus; events: CosmicEvent[] }) {
+  return (
+    <section id="events" className="club-section club-events-section">
+      <div className="club-shell">
+        <div className="club-section-heading">
+          <div><p className="club-kicker">On the calendar</p><h2>What’s happening at COSMIC</h2></div>
+          <p>Meetings, workshops, project nights, and guest conversations—open to curious GSU undergraduates.</p>
+        </div>
+        {status === 'loading' && (
+          <Card className="club-event-skeleton" aria-label="Loading upcoming events">
+            <Skeleton className="club-skeleton-date" />
+            <div><Skeleton className="club-skeleton-short" /><Skeleton className="club-skeleton-title" /><Skeleton className="club-skeleton-copy" /><Skeleton className="club-skeleton-copy small" /></div>
+          </Card>
+        )}
+        {status === 'error' && (
+          <Card className="club-event-state">
+            <CardHeader><CardTitle>We couldn’t load the schedule.</CardTitle><CardDescription>Check Panther Involvement Network for the latest COSMIC meetings and announcements.</CardDescription></CardHeader>
+            <CardFooter><Button nativeButton={false} render={<a href="https://pin.gsu.edu/" target="_blank" rel="noreferrer" />} size="lg">Open PIN <ExternalLink data-icon="inline-end" /></Button></CardFooter>
+          </Card>
+        )}
+        {status === 'empty' && (
+          <Card className="club-event-state">
+            <CardHeader><CardTitle>The next meetup is being planned.</CardTitle><CardDescription>Visit PIN for new workshop, build-night, and guest-speaker announcements.</CardDescription></CardHeader>
+            <CardFooter><Button nativeButton={false} render={<a href="https://pin.gsu.edu/" target="_blank" rel="noreferrer" />} size="lg">Check PIN <ExternalLink data-icon="inline-end" /></Button></CardFooter>
+          </Card>
+        )}
+        {status === 'upcoming' && <div className="club-event-list">{events.slice(0, 3).map(event => <EventCard event={event} key={event.id} />)}</div>}
+        {status === 'upcoming' && <p className="club-source-note">Event details are provided by the Panther Involvement Network.</p>}
       </div>
-      <p>{event.shortDescription}</p>
-      <div className="v2-event-organizations" aria-label="Participating organizations">{event.organizations.map(organization => <span key={organization}>{organization}</span>)}</div>
-      <div className="v2-event-footer">
-        <button className="v2-button calendar" type="button" onClick={() => downloadCalendar(event)}><CalendarIcon/> Add to Calendar</button>
-        <span className="v2-rsvp" aria-label={`${event.rsvpCount} students RSVPed`}><b>{event.rsvpCount}</b> students interested</span>
-      </div>
-    </div>
-    <div className={`v2-event-image ${event.image ? '' : 'fallback'}`}>
-      {event.image ? <img src={event.image} alt="Students participating in a COSMIC club activity"/> : <div><StemIcon type="network"/><span>Image coming soon</span></div>}
-    </div>
-  </article>
+    </section>
+  )
 }
 
-function EventsSection({ status, events }: { status: EventsStatus; events: EventItem[] }) {
-  return <section id="events" className="v2-section v2-events">
-    <div className="v2-wrap">
-      <div className="v2-heading"><div><p className="v2-kicker">See what’s happening next</p><h2>Events & Meetings</h2></div><p>Meet, connect, and get involved. Every gathering is a low-pressure way to learn something, find collaborators, and become part of COSMIC.</p></div>
-      {status === 'loading' && <div className="v2-event-state loading" role="status" aria-live="polite"><span/><span/><span/><p>Loading upcoming COSMIC events…</p></div>}
-      {status === 'error' && <div className="v2-event-state" role="alert"><b>Events are temporarily unavailable.</b><p>We couldn’t load the schedule. Please check back shortly.</p><a className="v2-button secondary" href="/design-2-v2#events">Try again</a></div>}
-      {status === 'empty' && <div className="v2-event-state"><b>No upcoming events yet.</b><p>The next COSMIC meeting is being planned. Follow our PIN page for new dates and announcements.</p><a className="v2-button secondary" href="#join">Stay connected</a></div>}
-      {status === 'upcoming' && <><div className="v2-event-grid">{events.map((event, index) => <EventCard event={event} featured={index === 0} key={event.id}/>)}</div><p className="v2-note">Sample schedule for this UI demo. Event details will later be supplied by the Panther Involvement Network.</p></>}
-    </div>
-  </section>
+function SiteHeader() {
+  return (
+    <>
+      <div className="club-campus-bar"><div className="club-shell"><span>Georgia State University</span><span>Undergraduate student organization</span></div></div>
+      <header className="club-header">
+        <nav className="club-shell club-nav" aria-label="Main navigation">
+          <a className="club-brand" href="#home" aria-label="COSMIC home">
+            <img src={logo} alt="" />
+            <span><strong>COSMIC</strong><small>Math · Innovation · Computing</small></span>
+          </a>
+          <div className="club-desktop-nav">
+            {navItems.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
+            <Button nativeButton={false} render={<a href="#join" />} size="lg" className="club-nav-cta">Join the club</Button>
+          </div>
+          <div className="club-mobile-nav">
+            <Sheet>
+              <SheetTrigger render={<Button variant="outline" size="icon-lg" aria-label="Open navigation" />}><Menu /></SheetTrigger>
+              <SheetContent className="club-mobile-panel">
+                <SheetHeader>
+                  <SheetTitle>COSMIC</SheetTitle>
+                  <SheetDescription>Community of Students in Math, Innovation, and Computing</SheetDescription>
+                </SheetHeader>
+                <nav aria-label="Mobile navigation">{navItems.map(([label, href]) => <a href={href} key={href}>{label}</a>)}<a href="#join">Join COSMIC</a></nav>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </nav>
+      </header>
+    </>
+  )
 }
 
 export default function Design2V2() {
-  const [open, setOpen] = useState(false)
-  const [events, setEvents] = useState<EventItem[]>([])
+  const [events, setEvents] = useState<CosmicEvent[]>([])
   const [eventsStatus, setEventsStatus] = useState<EventsStatus>('loading')
-  const close = () => setOpen(false)
-  const requestedEventsStatus = new URLSearchParams(window.location.search).get('events')
+  const requestedStatus = new URLSearchParams(window.location.search).get('events')
 
   useEffect(() => {
-    if (requestedEventsStatus === 'empty' || requestedEventsStatus === 'loading' || requestedEventsStatus === 'error') {
+    if (requestedStatus === 'empty' || requestedStatus === 'loading' || requestedStatus === 'error') {
       setEvents([])
-      setEventsStatus(requestedEventsStatus)
+      setEventsStatus(requestedStatus)
       return
     }
-
     const controller = new AbortController()
-    setEventsStatus('loading')
     fetchCosmicEvents(controller.signal)
       .then(nextEvents => {
         setEvents(nextEvents)
@@ -123,30 +261,116 @@ export default function Design2V2() {
         setEventsStatus('error')
       })
     return () => controller.abort()
-  }, [requestedEventsStatus])
-  return <div className="cosmic-v2">
-    <aside className="v2-switcher" aria-label="Design comparison"><span>Compare</span><a href="/design-2">Original Design 2</a><a className="active" href="/design-2-v2">Enhanced V2</a></aside>
-    <header className="v2-header"><nav className="v2-wrap v2-nav" aria-label="Main navigation"><a className="v2-brand" href="#home" onClick={close}><img src={logo} alt="COSMIC logo"/><span>COSMIC</span></a><button className="v2-menu" type="button" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}><span/><span/><span/></button><div className={`v2-links ${open ? 'open' : ''}`}><a href="#about" onClick={close}>About</a><a href="#events" onClick={close}>Events</a><a href="#activities" onClick={close}>Activities</a><a href="#gallery" onClick={close}>Club Moments</a><a href="#leadership" onClick={close}>Leadership</a><a className="v2-button small" href="#join" onClick={close}>Join COSMIC</a></div></nav></header>
+  }, [requestedStatus])
 
-    <main>
-      <section id="home" className="v2-hero"><div className="orbit orbit-a"/><div className="orbit orbit-b"/><div className="binary-accent" aria-hidden="true">data · code · science · ideas</div><div className="v2-wrap v2-hero-grid"><div className="v2-hero-copy"><p className="v2-kicker"><span/> Georgia State University</p><h1>COSMIC</h1><p className="v2-name">Community of Students in Math, Innovation, and Computing</p><h2>Explore. Compute.<br/>Build. Connect.</h2><p className="v2-lead">A student community exploring the intersection of mathematics, science, and computing through hands-on experiences, collaboration, and real-world problem solving.</p><div className="v2-actions"><a className="v2-button" href="#join">Join COSMIC <span>→</span></a><a className="v2-button secondary" href="#events">See what’s next</a></div><div className="v2-pulse"><i/><span><b>Next up</b> Fall General Body Meeting · Sep 12</span></div></div><div className="v2-hero-visual"><div className="v2-photo"><img src={photos[0][0]} alt={photos[0][1]}/><div><span>Community in motion</span><b>Ideas are better together.</b></div></div><img className="v2-logo-mark" src={logo} alt=""/></div></div></section>
-      <StemRibbon/>
+  return (
+    <div className="club-site">
+      <SiteHeader />
+      <main>
+        <section id="home" className="club-hero">
+          <div className="club-shell club-hero-grid">
+            <div className="club-hero-copy">
+              <Badge variant="outline" className="club-hero-badge">Student-run at Georgia State</Badge>
+              <p className="club-wordmark">COSMIC</p>
+              <h1>Where math, science, and code meet.</h1>
+              <p className="club-hero-lead">A student community for exploring scientific computing through workshops, projects, and the people doing the work.</p>
+              <div className="club-actions">
+                <Button nativeButton={false} render={<a href="#join" />} size="lg" className="club-primary-action">Join COSMIC <ArrowRight data-icon="inline-end" /></Button>
+                <Button nativeButton={false} render={<a href="#events" />} variant="outline" size="lg">See upcoming events</Button>
+              </div>
+              <p className="club-beginner-note"><strong>No experience required.</strong> Bring a question, a laptop, or just your curiosity.</p>
+            </div>
+            <Card className="club-start-card">
+              <div className="club-start-accent"><span>01</span><span>Start here</span></div>
+              <CardHeader><CardTitle>New to scientific computing?</CardTitle><CardDescription>You are exactly who this club is for.</CardDescription></CardHeader>
+              <CardContent>
+                <ol>
+                  <li><span>1</span><div><strong>Come to a meeting</strong><small>Meet members and see what is coming up.</small></div></li>
+                  <li><span>2</span><div><strong>Try a workshop</strong><small>Follow along at your own pace.</small></div></li>
+                  <li><span>3</span><div><strong>Build with someone</strong><small>Join a project when you are ready.</small></div></li>
+                </ol>
+              </CardContent>
+              <CardFooter><Button nativeButton={false} render={<a href="#about" />} variant="secondary" size="lg">How COSMIC works <ArrowRight data-icon="inline-end" /></Button></CardFooter>
+            </Card>
+          </div>
+          <div className="club-discipline-strip">
+            <div className="club-shell">{disciplines.map(({ label, note, icon: Icon }) => <div key={label}><Icon /><span><strong>{label}</strong><small>{note}</small></span></div>)}</div>
+          </div>
+        </section>
 
-      <section id="about" className="v2-section v2-about"><NetworkMotif/><div className="v2-wrap v2-split"><div><p className="v2-kicker">More than a classroom</p><h2>Curiosity becomes something you can build.</h2></div><div><p className="v2-big">COSMIC is an undergraduate student organization focused on scientific computing and the intersection of mathematics, science, computing, and innovation.</p><p>We create opportunities for students to explore these areas beyond the classroom through hands-on experiences, collaboration, projects, and professional connections.</p><blockquote>Taking scientific computing beyond the classroom.</blockquote></div></div></section>
+        <section id="about" className="club-section club-about">
+          <div className="club-shell">
+            <div className="club-about-grid">
+              <div><p className="club-kicker">About the club</p><h2>Scientific computing, outside the syllabus.</h2></div>
+              <div className="club-about-copy">
+                <p className="club-large-copy">COSMIC is an undergraduate organization focused on the overlap between mathematics, science, computing, and innovation.</p>
+                <p>Members learn by doing: writing code, analyzing data, building computational models, working through hackathons, and talking with researchers and professionals about how these skills show up in real work.</p>
+                <div className="club-principles"><span>Learn the tools.</span><span>Test an idea.</span><span>Share what you find.</span></div>
+              </div>
+            </div>
+            <Separator className="club-story-divider" />
+            <div id="programs" className="club-journey">
+              <div className="club-section-heading club-journey-heading"><div><p className="club-kicker">What we do</p><h2>How COSMIC works</h2></div><p>Choose the doorway that fits. You can learn a tool, hear a new perspective, join a team, or simply meet people.</p></div>
+              <ItemGroup className="club-journey-list">
+                {programs.map(({ stage, title, text, example, icon: Icon }, index) => (
+                  <Fragment key={title}>
+                    <Item className={`club-journey-item step-${index + 1}${index % 2 ? ' is-reversed' : ''}`} role="listitem">
+                      <ItemMedia className="club-journey-marker">
+                        <span>0{index + 1}</span>
+                        <Icon aria-hidden="true" />
+                      </ItemMedia>
+                      <ItemContent className="club-journey-content">
+                        <p className="club-journey-stage">{stage}</p>
+                        <ItemTitle className="club-journey-title">{title}</ItemTitle>
+                        <ItemDescription className="club-journey-description">{text}</ItemDescription>
+                      </ItemContent>
+                      <div className="club-journey-example">
+                        <span>One way this looks</span>
+                        <p>{example}</p>
+                      </div>
+                    </Item>
+                    {index < programs.length - 1 && <ItemSeparator className="club-journey-separator" />}
+                  </Fragment>
+                ))}
+              </ItemGroup>
+            </div>
+          </div>
+        </section>
 
-      <EventsSection status={eventsStatus} events={events}/>
+        <EventsSection status={eventsStatus} events={events} />
 
-      <section id="activities" className="v2-section v2-activities"><div className="circuit-trace" aria-hidden="true"><i/><i/><i/><i/></div><div className="v2-wrap"><div className="v2-heading"><div><p className="v2-kicker">Learn by doing</p><h2>Club Activities</h2></div><p>Choose your way in: learn a tool, hear a new perspective, build with a team, or simply meet people.</p></div><div className="v2-activity-grid">{activities.map(([title, text], i) => <article key={title}><span>0{i + 1}</span><div className="activity-symbol"><StemIcon type={stemAreas[i][0]}/></div><h3>{title}</h3><p>{text}</p><b aria-hidden="true">→</b></article>)}</div></div></section>
+        <section className="club-section club-membership">
+          <div className="club-shell club-membership-grid">
+            <div><p className="club-kicker">Membership</p><h2>Curiosity is enough to begin.</h2><p>COSMIC welcomes Georgia State undergraduates interested in mathematics, science, data, technology, research, and problem solving.</p></div>
+            <Card className="club-membership-card">
+              <CardHeader><CardTitle>What you can expect</CardTitle></CardHeader>
+              <CardContent><ul><li>Beginner-friendly technical practice</li><li>Small projects with other students</li><li>Conversations with faculty and professionals</li><li>A community that learns in public</li></ul></CardContent>
+            </Card>
+          </div>
+        </section>
 
-      <section id="gallery" className="v2-section v2-gallery"><div className="v2-wrap"><div className="v2-heading"><div><p className="v2-kicker">Recent club highlights</p><h2>COSMIC in Action</h2></div><p>From workshops to build nights, see how members connect, create, solve problems, and get involved.</p></div><div className="v2-gallery-grid">{photos.map(([src, alt], i) => <figure key={src}><img src={src} alt={alt}/><figcaption><span>0{i + 1}</span>{['Build nights', 'Learning together', 'Project teams', 'Campus community'][i]}</figcaption></figure>)}</div></div></section>
+        <section id="leadership" className="club-section club-leadership">
+          <div className="club-shell">
+            <div className="club-section-heading"><div><p className="club-kicker">Student-led</p><h2>The officer team</h2></div><p>Officers organize COSMIC’s meetings, workshops, projects, partnerships, and member communication.</p></div>
+            <div className="club-officer-grid">{officerRoles.map(([role, focus], index) => <Card className="club-officer-card" key={role}><CardHeader><span className="club-officer-number">0{index + 1}</span><CardTitle>{role}</CardTitle><CardDescription>{focus}</CardDescription></CardHeader></Card>)}</div>
+            <p className="club-roster-note">Officer names and contact details will be added when the club roster is confirmed.</p>
+          </div>
+        </section>
 
-      <section id="leadership" className="v2-section v2-leadership"><div className="v2-wrap"><div className="v2-heading"><div><p className="v2-kicker">Student-led</p><h2>Meet the Team</h2></div><p>Officers create the space for members to learn, connect, and try ambitious things together.</p></div><div className="v2-officers">{officers.map(([initials, role, focus], i) => <article key={role}><div className="v2-avatar"><span>{initials}</span><i/></div><span className="v2-role">0{i + 1}</span><p>Name coming soon</p><h3>{role}</h3><small>{focus}</small></article>)}</div></div></section>
-
-      <section className="v2-section v2-membership"><div className="v2-wrap v2-split"><div><p className="v2-kicker">Why join?</p><h2>You don’t have to be an expert. You just have to be curious.</h2><p>COSMIC welcomes Georgia State undergraduate students who want to explore mathematics, science, data, technology, research, and problem solving.</p></div><ul><li><span>01</span>Build practical skills</li><li><span>02</span>Work on meaningful projects</li><li><span>03</span>Meet students with similar interests</li><li><span>04</span>Explore careers and research</li></ul></div></section>
-
-      <section id="join" className="v2-section v2-join"><div className="join-orbit"/><div className="join-network" aria-hidden="true"><span/><span/><span/><span/><i/><i/><i/></div><div className="v2-wrap"><img src={logo} alt=""/><p className="v2-kicker">There’s a place for you here</p><h2>Bring your curiosity.<br/>We’ll build from there.</h2><p>Come to a meeting, try a workshop, or bring an idea you want to explore with others.</p><div className="v2-actions"><button className="v2-button" type="button">Join on PIN <span>↗</span></button><a className="v2-button secondary" href="mailto:cosmic@example.edu">Contact COSMIC</a></div><small>The official Panther Involvement Network link will be added when available.</small></div></section>
-    </main>
-
-    <footer className="v2-footer"><div className="v2-wrap"><div className="v2-footer-brand"><img src={logo} alt=""/><div><b>COSMIC</b><span>Community of Students in Math, Innovation, and Computing</span><small>Georgia State University</small></div></div><div className="v2-footer-links"><div><b>Explore</b><a href="#about">About</a><a href="#events">Events</a><a href="#leadership">Leadership</a></div><div><b>Connect</b><a href="#" onClick={e => e.preventDefault()}>Instagram</a><a href="#" onClick={e => e.preventDefault()}>LinkedIn</a><a href="mailto:cosmic@example.edu">Email</a></div><div><b>Organization</b><a href="#" onClick={e => e.preventDefault()}>PIN page</a><a href="#" onClick={e => e.preventDefault()}>Constitution</a></div></div></div></footer>
-  </div>
+        <section id="join" className="club-section club-join">
+          <div className="club-shell club-join-grid">
+            <div><Badge variant="outline">Open to GSU undergraduates</Badge><h2>Come see what we’re working on.</h2><p>Start with a meeting or workshop. You do not need a project idea, a technical background, or the right vocabulary.</p></div>
+            <div className="club-join-actions"><Button nativeButton={false} render={<a href="https://pin.gsu.edu/" target="_blank" rel="noreferrer" />} size="lg">Find COSMIC on PIN <ExternalLink data-icon="inline-end" /></Button><Button nativeButton={false} render={<a href="#events" />} variant="outline" size="lg"><CalendarPlus data-icon="inline-start" /> View club events</Button></div>
+          </div>
+        </section>
+      </main>
+      <footer className="club-footer">
+        <div className="club-shell">
+          <div className="club-footer-brand"><img src={logo} alt="" /><div><strong>COSMIC</strong><span>Community of Students in Math, Innovation, and Computing</span><small>Georgia State University</small></div></div>
+          <Separator orientation="vertical" className="club-footer-separator" />
+          <nav aria-label="Footer navigation">{navItems.map(([label, href]) => <a href={href} key={href}>{label}</a>)}<a href="#join">Membership</a></nav>
+        </div>
+      </footer>
+    </div>
+  )
 }

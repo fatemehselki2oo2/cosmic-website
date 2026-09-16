@@ -1,0 +1,241 @@
+.cosmic-site { min-height: 100vh; overflow-x: clip; color: #0b1a38; background: #f4f1e8; }
+.cosmic-site a:focus-visible, .cosmic-site button:focus-visible, .cosmic-site [role="tab"]:focus-visible { outline: 3px solid #ff4fa3 !important; outline-offset: 4px; }
+.cosmic-site [data-slot="button"], .cosmic-site .poster-v2-desktop-nav [data-slot="navigation-menu-link"] { min-height: 44px; }
+.cosmic-header [aria-current="page"] { color: #ff4fa3 !important; text-decoration: underline; text-underline-offset: 6px; }
+.cosmic-sheet [data-slot="sheet-close"] { min-width: 44px; min-height: 44px; }
+.cosmic-pin-link { background: #c7ff26 !important; color: #0b1a38 !important; }
+.cosmic-home-hero { min-height: auto; }
+.cosmic-home-wall { min-height: 1830px; position: relative; }
+.cosmic-wall-manifesto { position: absolute; top: 170px; left: 7%; width: 48%; padding: 52px; color: #f4f1e8; background: #0b1a38; border: 2px solid #0b1a38; box-shadow: 12px 12px 0 #33d6ff; transform: rotate(-1deg); }
+.cosmic-wall-manifesto > span, .cosmic-home-event > span, .cosmic-home-method span, .cosmic-home-gallery span, .cosmic-home-people > span { font: 800 .72rem/1.2 var(--font-mono, monospace); letter-spacing: .14em; }
+.cosmic-wall-manifesto h2, .cosmic-home-event h2, .cosmic-home-method h2, .cosmic-home-gallery h2, .cosmic-home-people h2 { margin: 16px 0; font-size: clamp(2rem, 4vw, 4.8rem); line-height: .92; letter-spacing: -.055em; }
+.cosmic-wall-manifesto em { color: #33d6ff; font-style: normal; }
+.cosmic-wall-manifesto p, .cosmic-home-event p, .cosmic-home-method p, .cosmic-home-gallery p, .cosmic-home-people p { max-width: 58ch; font-size: 1rem; line-height: 1.65; }
+.cosmic-wall-manifesto a, .cosmic-home-event a, .cosmic-home-method a, .cosmic-home-gallery a, .cosmic-home-people a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 16px; color: inherit; font: 800 .78rem/1 var(--font-mono, monospace); text-transform: uppercase; letter-spacing: .08em; }
+.cosmic-wall-manifesto a svg, .cosmic-home-event a svg, .cosmic-home-method a svg, .cosmic-home-gallery a svg, .cosmic-home-people a svg { width: 16px; }
+.cosmic-note-about { top: 300px; right: 7%; }
+.cosmic-home-event { position: absolute; top: 610px; right: 6%; width: 54%; padding: 48px; background: #ffedf6; border: 2px solid #0b1a38; box-shadow: -11px 11px 0 #ff4fa3; }
+.cosmic-home-event > svg, .cosmic-home-people > svg { position: absolute; right: 30px; top: 30px; width: 70px; height: 70px; opacity: .13; }
+.cosmic-note-events { top: 700px; left: 7%; }
+.cosmic-home-method { position: absolute; top: 1050px; left: 6%; width: 68%; display: grid; grid-template-columns: .85fr 1.15fr; gap: 36px; padding: 48px; background: #dff9ff; border: 2px solid #0b1a38; box-shadow: 12px 12px 0 #1b70f0; transform: rotate(.5deg); }
+.cosmic-method-code { display: flex; flex-direction: column; gap: 12px; padding: 24px; color: #c7ff26; background: #07152e; }
+.cosmic-method-code code { font: 700 .86rem/1.4 var(--font-mono, monospace); }
+.cosmic-note-activities { top: 1110px; right: 3%; }
+.cosmic-home-gallery { position: absolute; top: 1470px; left: 7%; width: 56%; display: grid; grid-template-columns: .85fr 1.15fr; gap: 28px; padding: 36px; background: #fff; border: 2px solid #0b1a38; box-shadow: 10px 10px 0 #f3c42f; }
+.cosmic-photo-outline { min-height: 220px; display: grid; place-items: center; border: 2px dashed #0b1a38; background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(11,26,56,.06) 12px 13px); }
+.cosmic-photo-outline svg { width: 54px; height: 54px; }
+.cosmic-photo-outline span { writing-mode: vertical-rl; position: absolute; }
+.cosmic-note-gallery { top: 1530px; right: 6%; }
+.cosmic-home-people { position: absolute; top: 1870px; right: 6%; width: 53%; padding: 48px; color: white; background: #1b70f0; border: 2px solid #0b1a38; box-shadow: -10px 10px 0 #33d6ff; }
+.cosmic-note-leadership { top: 1940px; left: 8%; }
+.cosmic-home-wall { padding-bottom: 450px; }
+.cosmic-join { padding: clamp(72px, 10vw, 150px) 7%; color: #f4f1e8; background: #0b1a38; border-top: 12px solid #33d6ff; text-align: center; }
+.cosmic-join h2 { margin: 22px auto; font-size: clamp(3rem, 8vw, 8rem); line-height: .85; letter-spacing: -.065em; }
+.cosmic-join > p:not(.poster-v2-kicker) { max-width: 700px; margin: 0 auto 28px; font-size: 1.1rem; line-height: 1.7; }
+.cosmic-page-intro { position: relative; display: grid; grid-template-columns: 100px minmax(0, 1fr) 150px; gap: 48px; padding: clamp(90px, 12vw, 170px) 7% clamp(64px, 8vw, 112px); color: #f4f1e8; background-color: #0b1a38; background-image: linear-gradient(rgba(51,214,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(51,214,255,.08) 1px, transparent 1px); background-size: 32px 32px; border-bottom: 10px solid #33d6ff; }
+.cosmic-intro-index { font: 900 clamp(2.3rem, 4vw, 5rem)/.9 var(--font-mono, monospace); color: #33d6ff; writing-mode: vertical-rl; }
+.cosmic-page-intro h1 { max-width: 1050px; margin: 18px 0 26px; font-size: clamp(3.2rem, 7.4vw, 8.8rem); line-height: .83; letter-spacing: -.07em; }
+.cosmic-page-lead { max-width: 750px; color: #dce8ff; font-size: clamp(1.05rem, 1.7vw, 1.35rem); line-height: 1.65; }
+.cosmic-intro-mark { align-self: end; min-height: 170px; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; color: #0b1a38; background: #ff4fa3; border: 2px solid #f4f1e8; box-shadow: 9px 9px 0 #33d6ff; transform: rotate(2deg); }
+.cosmic-intro-mark span { font: 800 .65rem/1.2 var(--font-mono, monospace); letter-spacing: .12em; }
+.cosmic-intro-mark svg { width: 64px; height: 64px; align-self: end; }
+.cosmic-about-editorial { display: grid; grid-template-columns: minmax(230px, .75fr) minmax(0, 1.8fr); gap: clamp(50px, 8vw, 140px); padding: clamp(76px, 10vw, 150px) 8%; }
+.cosmic-about-editorial aside { align-self: start; position: sticky; top: 120px; padding: 28px; background: #dff9ff; border: 2px solid #0b1a38; box-shadow: 8px 8px 0 #33d6ff; transform: rotate(-1deg); }
+.cosmic-about-editorial aside span, .cosmic-mission-strip > span, .cosmic-workflow-heading > span { font: 800 .7rem/1.2 var(--font-mono, monospace); letter-spacing: .12em; }
+.cosmic-about-editorial aside p { margin: 18px 0; font-size: 1.3rem; line-height: 1.35; font-weight: 800; }
+.cosmic-about-editorial aside small { line-height: 1.5; }
+.cosmic-about-editorial article { max-width: 850px; font-size: 1.18rem; line-height: 1.85; }
+.cosmic-dropcap::first-letter { float: left; margin: 8px 12px 0 0; font-size: 6rem; line-height: .65; font-weight: 900; color: #1b70f0; }
+.cosmic-about-editorial blockquote { margin: 60px 0; padding: 12px 0 12px 36px; font-size: clamp(2rem, 4vw, 4.5rem); line-height: .95; letter-spacing: -.04em; font-weight: 900; border-left: 8px solid #ff4fa3; }
+.cosmic-mission-strip { display: grid; grid-template-columns: 130px 1fr auto; gap: 32px; align-items: center; padding: 42px 8%; background: #c7ff26; border-block: 2px solid #0b1a38; }
+.cosmic-mission-strip p { max-width: 800px; font-size: clamp(1.35rem, 2.8vw, 2.7rem); line-height: 1.05; font-weight: 900; }
+.cosmic-mission-strip div { font: 700 .75rem/1.3 var(--font-mono, monospace); }
+.cosmic-lbc { padding: clamp(80px, 10vw, 150px) 8%; }
+.cosmic-lbc > div:first-child { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 65px; }
+.cosmic-lbc h2 { font-size: clamp(3rem, 6vw, 7rem); line-height: .88; letter-spacing: -.06em; }
+.cosmic-lbc-path { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid #0b1a38; }
+.cosmic-lbc-path article { position: relative; min-height: 350px; padding: 34px; border-right: 2px solid #0b1a38; }
+.cosmic-lbc-path article:nth-child(2) { background: #dff9ff; }
+.cosmic-lbc-path article:nth-child(3) { border-right: 0; background: #ffedf6; }
+.cosmic-lbc-path article > span { font: 900 3rem/1 var(--font-mono, monospace); color: #1b70f0; }
+.cosmic-lbc-path article > svg { position: absolute; right: 28px; top: 28px; width: 44px; height: 44px; }
+.cosmic-lbc-path h3 { margin: 88px 0 14px; font-size: 2.2rem; }
+.cosmic-lbc-path p { line-height: 1.65; }
+.cosmic-who { position: relative; display: grid; grid-template-columns: 1.2fr 1fr; gap: 70px; padding: 110px 8%; color: #f4f1e8; background: #0b1a38; }
+.cosmic-who span { font: 800 .72rem/1 var(--font-mono, monospace); letter-spacing: .12em; color: #33d6ff; }
+.cosmic-who h2 { margin-top: 24px; font-size: clamp(3rem, 5.5vw, 6rem); line-height: .9; }
+.cosmic-who ul { list-style: none; padding: 0; margin: 0; }
+.cosmic-who li { padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.25); font-size: 1.08rem; }
+.cosmic-hand-note { position: absolute; right: 7%; bottom: 26px; color: #ff4fa3; font: 700 1rem/1 cursive; transform: rotate(-2deg); }
+.cosmic-events-board { padding: clamp(70px, 9vw, 130px) 7%; }
+.cosmic-board-heading { display: flex; justify-content: space-between; padding-bottom: 18px; margin-bottom: 34px; border-bottom: 3px solid #0b1a38; font: 800 .75rem/1 var(--font-mono, monospace); letter-spacing: .1em; }
+.cosmic-event-row { flex-wrap: nowrap !important; gap: 30px !important; padding: 28px 0 !important; border: 0 !important; border-bottom: 2px solid #0b1a38 !important; border-radius: 0 !important; }
+.cosmic-event-row.is-featured { padding: clamp(32px, 5vw, 66px) !important; margin-bottom: 60px; background: #ffedf6; border: 2px solid #0b1a38 !important; box-shadow: 12px 12px 0 #ff4fa3; }
+.cosmic-event-date { width: 90px; height: 105px; flex-direction: column; color: #f4f1e8; background: #0b1a38; border: 2px solid #0b1a38; }
+.cosmic-event-date span { font: 800 .7rem/1 var(--font-mono, monospace); letter-spacing: .1em; }
+.cosmic-event-date strong { font: 900 3.4rem/.9 var(--font-mono, monospace); }
+.cosmic-event-overline { font: 800 .7rem/1.3 var(--font-mono, monospace); letter-spacing: .08em; color: #1b70f0; }
+.cosmic-event-row [data-slot="item-title"] { max-width: none; display: block; margin: 8px 0; font-size: clamp(1.5rem, 3vw, 3rem); line-height: 1; font-weight: 900; }
+.cosmic-event-row [data-slot="item-description"] { max-width: 720px; -webkit-line-clamp: 3; color: #31415f; font-size: .98rem; }
+.cosmic-event-meta { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 12px; }
+.cosmic-event-meta span { display: inline-flex; gap: 7px; align-items: center; font: 700 .74rem/1.2 var(--font-mono, monospace); }
+.cosmic-event-meta svg { width: 15px; }
+.cosmic-event-tabs [data-slot="tabs-list"] { width: 100%; justify-content: flex-start; gap: 26px; border-bottom: 2px solid #0b1a38; }
+.cosmic-event-tabs [data-slot="tabs-trigger"] { min-height: 48px; padding: 0 14px; color: #0b1a38; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+.cosmic-event-tabs [data-slot="tabs-trigger"] span { padding: 3px 6px; color: white; background: #1b70f0; }
+.cosmic-event-tabs [data-slot="tabs-trigger"]::after { background: #ff4fa3; height: 5px; }
+.cosmic-event-tabs [data-slot="tabs-content"] { padding-top: 24px; }
+.cosmic-empty { min-height: 280px; border: 2px dashed #0b1a38 !important; border-radius: 0 !important; background: rgba(255,255,255,.35); }
+.cosmic-empty [data-slot="empty-icon"] svg { width: 48px; height: 48px; color: #1b70f0; }
+.cosmic-empty [data-slot="empty-title"] { font-size: 1.5rem; font-weight: 900; }
+.cosmic-empty.is-error { background: #ffedf6; }
+.cosmic-event-skeleton { display: grid; grid-template-columns: 120px 1fr; gap: 30px; min-height: 260px; padding: 50px; margin-bottom: 60px; border: 2px solid #0b1a38; }
+.cosmic-event-skeleton > div { display: grid; gap: 16px; }
+.cosmic-workflow { display: grid; grid-template-columns: .72fr 1.28fr; gap: 70px; padding: clamp(80px, 10vw, 150px) 7%; }
+.cosmic-workflow-heading { position: sticky; top: 110px; align-self: start; }
+.cosmic-workflow-heading h2 { margin: 22px 0; font-size: clamp(3rem, 6vw, 6.7rem); line-height: .85; letter-spacing: -.06em; }
+.cosmic-workflow-heading p { max-width: 35ch; line-height: 1.65; }
+.cosmic-workflow-list { position: relative; gap: 0 !important; }
+.cosmic-workflow-list::before { content: ''; position: absolute; left: 58px; top: 72px; bottom: 72px; width: 4px; background: #33d6ff; }
+.cosmic-workflow-item { flex-wrap: nowrap !important; min-height: 190px; gap: 30px !important; padding: 26px 0 !important; border: 0 !important; border-radius: 0 !important; }
+.cosmic-workflow-item [data-slot="item-media"] { position: relative; z-index: 1; width: 120px; height: 120px; flex-direction: column; color: #f4f1e8; background: #0b1a38; border: 3px solid #33d6ff; transform: rotate(-2deg); }
+.cosmic-workflow-item:nth-child(even) [data-slot="item-media"] { color: #0b1a38; background: #ff4fa3; transform: rotate(2deg); }
+.cosmic-workflow-item [data-slot="item-media"] span { font: 900 2rem/1 var(--font-mono, monospace); }
+.cosmic-workflow-item [data-slot="item-title"] { max-width: none; font-size: clamp(1.6rem, 3vw, 3.1rem); line-height: 1; font-weight: 900; }
+.cosmic-workflow-item [data-slot="item-content"] > p:first-child { font: 800 .72rem/1 var(--font-mono, monospace); color: #1b70f0; letter-spacing: .1em; }
+.cosmic-workflow-item [data-slot="item-description"] { max-width: 620px; -webkit-line-clamp: 4; font-size: 1rem; }
+.cosmic-activity-field { display: grid; grid-template-columns: 1.25fr .75fr; gap: 44px; padding: 90px 7% 140px; background-color: #0b1a38; background-image: linear-gradient(rgba(51,214,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(51,214,255,.08) 1px, transparent 1px); background-size: 30px 30px; }
+.cosmic-workshop-poster { position: relative; grid-row: span 2; padding: clamp(42px, 6vw, 80px); color: #0b1a38; background: #c7ff26; border: 3px solid #f4f1e8; box-shadow: 14px 14px 0 #33d6ff; transform: rotate(-1deg); }
+.cosmic-workshop-poster > span, .cosmic-project-note > span, .cosmic-opportunity-map > span { font: 800 .7rem/1.2 var(--font-mono, monospace); letter-spacing: .1em; }
+.cosmic-workshop-poster h2 { margin: 40px 0; font-size: clamp(3rem, 6vw, 7rem); line-height: .83; letter-spacing: -.065em; }
+.cosmic-workshop-poster em { color: #1b70f0; font-style: normal; }
+.cosmic-workshop-poster div:last-child { display: flex; flex-direction: column; gap: 8px; margin-top: 52px; padding: 22px; color: #c7ff26; background: #07152e; font-size: .82rem; }
+.cosmic-tape { position: absolute; width: 120px; height: 32px; left: 50%; top: -17px; background: rgba(244,241,232,.8); transform: rotate(2deg); }
+.cosmic-project-note, .cosmic-opportunity-map { position: relative; padding: 38px; color: #0b1a38; background: #ffedf6; border: 2px solid #f4f1e8; box-shadow: 9px 9px 0 #ff4fa3; }
+.cosmic-project-note > svg { position: absolute; right: 20px; top: -18px; width: 48px; height: 48px; }
+.cosmic-project-note h3, .cosmic-opportunity-map h3 { margin: 26px 0 14px; font-size: 2.2rem; line-height: 1; }
+.cosmic-project-note p, .cosmic-project-note li, .cosmic-opportunity-map small { line-height: 1.6; }
+.cosmic-opportunity-map { background: #dff9ff; box-shadow: 9px 9px 0 #1b70f0; }
+.cosmic-opportunity-map div { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+.cosmic-opportunity-map p { display: flex; align-items: center; gap: 8px; padding: 12px; border: 1px solid #0b1a38; font-weight: 800; }
+.cosmic-opportunity-map svg { width: 18px; }
+.cosmic-gallery-wall { position: relative; display: grid; grid-template-columns: 1.25fr .75fr 1fr; gap: 38px; padding: 110px 7% 150px; background-color: #d7d4ca; background-image: radial-gradient(rgba(11,26,56,.18) 1px, transparent 1px); background-size: 12px 12px; }
+.cosmic-gallery-note { align-self: start; position: relative; padding: 36px; background: #c7ff26; border: 2px solid #0b1a38; box-shadow: 9px 9px 0 #1b70f0; transform: rotate(-2deg); }
+.cosmic-gallery-note > svg { position: absolute; right: 16px; top: -22px; width: 50px; height: 50px; }
+.cosmic-gallery-note span, .cosmic-gallery-slot span { font: 800 .7rem/1 var(--font-mono, monospace); letter-spacing: .1em; }
+.cosmic-gallery-note h2 { margin: 26px 0 12px; font-size: 2.5rem; line-height: .95; }
+.cosmic-gallery-slot { align-self: start; padding: 14px 14px 46px; background: #fff; border: 2px solid #0b1a38; box-shadow: 8px 8px 0 rgba(11,26,56,.2); }
+.cosmic-gallery-slot.tall { transform: rotate(1.5deg); }
+.cosmic-gallery-slot.wide-two { grid-column: 1 / 3; width: 82%; justify-self: end; transform: rotate(-1deg); }
+.cosmic-gallery-slot [data-slot="aspect-ratio"] > div { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; text-align: center; border: 2px dashed #0b1a38; background: repeating-linear-gradient(-45deg, #dff9ff 0 16px, #eefcff 16px 32px); }
+.cosmic-gallery-slot svg { width: 46px; height: 46px; }
+.cosmic-gallery-slot strong { font-size: 1.35rem; }
+.cosmic-gallery-slot small { font: 700 .65rem/1.3 var(--font-mono, monospace); }
+.cosmic-gallery-empty { grid-column: 3; align-self: end; background: #ffedf6; box-shadow: 8px 8px 0 #ff4fa3; }
+.cosmic-leadership-board { padding: 100px 7% 150px; }
+.cosmic-leadership-empty { min-height: 360px; margin-bottom: 80px; background: #dff9ff; box-shadow: 12px 12px 0 #33d6ff; }
+.cosmic-role-ledger { border-top: 4px solid #0b1a38; }
+.cosmic-role-ledger > div { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0 42px; font: 800 .72rem/1 var(--font-mono, monospace); letter-spacing: .1em; }
+.cosmic-role-ledger article { display: grid; grid-template-columns: 90px 1fr 1fr; gap: 30px; align-items: baseline; padding: 30px 0; border-top: 2px solid #0b1a38; }
+.cosmic-role-ledger article b { font: 900 2.5rem/1 var(--font-mono, monospace); color: #1b70f0; }
+.cosmic-role-ledger article h2 { font-size: clamp(1.7rem, 3vw, 3.4rem); }
+.cosmic-leader-profile { display: grid; grid-template-columns: 180px 1fr; gap: 36px; padding: 40px; border-bottom: 2px solid #0b1a38; }
+.cosmic-avatar { width: 160px !important; height: 160px !important; border-radius: 0 !important; }
+.cosmic-avatar * { border-radius: 0 !important; }
+.cosmic-footer { padding: 50px 7%; color: #dce8ff; background: #07152e; border-top: 1px solid #33d6ff; }
+.cosmic-footer-inner { display: grid; grid-template-columns: 1fr auto; gap: 34px; align-items: center; }
+.cosmic-footer nav { display: flex; gap: 8px 28px; flex-wrap: wrap; justify-content: end; }
+.cosmic-footer nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.cosmic-footer a { color: inherit; }
+.cosmic-footer-inner > a:last-child { grid-column: 1 / -1; display: inline-flex; gap: 8px; align-items: center; width: max-content; min-height: 44px; font: 700 .75rem/1 var(--font-mono, monospace); }
+.cosmic-footer-inner > a:last-child svg { width: 15px; }
+
+@media (max-width: 900px) {
+  .cosmic-home-wall { min-height: auto; padding: 70px 6%; display: flex; flex-direction: column; gap: 42px; }
+  .cosmic-home-wall > * { position: relative !important; inset: auto !important; width: auto !important; transform: none !important; }
+  .cosmic-home-wall .poster-v2-wall-label { display: flex; }
+  .cosmic-home-wall .poster-v2-wall-index { order: 0; }
+  .cosmic-wall-manifesto { order: 1; }
+  .cosmic-note-about { order: 2; align-self: flex-end; }
+  .cosmic-home-event { order: 3; }
+  .cosmic-note-events { order: 4; }
+  .cosmic-home-method { order: 5; grid-template-columns: 1fr; }
+  .cosmic-note-activities { order: 6; align-self: flex-end; }
+  .cosmic-home-gallery { order: 7; grid-template-columns: 1fr; }
+  .cosmic-note-gallery { order: 8; }
+  .cosmic-home-people { order: 9; }
+  .cosmic-note-leadership { order: 10; align-self: flex-end; }
+  .cosmic-page-intro { grid-template-columns: 65px 1fr; }
+  .cosmic-intro-mark { display: none; }
+  .cosmic-mission-strip { grid-template-columns: 110px 1fr; }
+  .cosmic-mission-strip div { grid-column: 2; }
+  .cosmic-lbc-path { grid-template-columns: 1fr; }
+  .cosmic-lbc-path article { min-height: 280px; border-right: 0; border-bottom: 2px solid #0b1a38; }
+  .cosmic-lbc-path article:last-child { border-bottom: 0; }
+  .cosmic-workflow { grid-template-columns: 1fr; }
+  .cosmic-workflow-heading { position: static; }
+  .cosmic-activity-field { grid-template-columns: 1fr; }
+  .cosmic-workshop-poster { grid-row: auto; }
+  .cosmic-gallery-wall { grid-template-columns: 1fr 1fr; }
+  .cosmic-gallery-note { grid-column: 1 / -1; }
+  .cosmic-gallery-slot.wide-two { grid-column: 1 / -1; }
+  .cosmic-gallery-empty { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  .cosmic-page-intro { grid-template-columns: 1fr; gap: 28px; padding-inline: 6%; }
+  .cosmic-intro-index { writing-mode: initial; }
+  .cosmic-page-intro h1 { font-size: clamp(3rem, 15vw, 5rem); overflow-wrap: anywhere; }
+  .cosmic-home-wall { padding-inline: 18px; }
+  .cosmic-wall-manifesto, .cosmic-home-event, .cosmic-home-method, .cosmic-home-gallery, .cosmic-home-people { padding: 28px 22px; box-shadow: 7px 7px 0 #33d6ff; }
+  .cosmic-home-gallery { display: block; }
+  .cosmic-photo-outline { margin-bottom: 26px; }
+  .cosmic-method-code { padding: 18px; overflow-x: auto; }
+  .cosmic-about-editorial { grid-template-columns: 1fr; padding-inline: 6%; }
+  .cosmic-about-editorial aside { position: static; }
+  .cosmic-about-editorial article { font-size: 1.03rem; }
+  .cosmic-about-editorial blockquote { margin: 45px 0; padding-left: 20px; }
+  .cosmic-mission-strip { grid-template-columns: 1fr; padding-inline: 6%; }
+  .cosmic-mission-strip div { grid-column: auto; overflow-wrap: anywhere; }
+  .cosmic-lbc { padding-inline: 6%; }
+  .cosmic-lbc > div:first-child { display: block; }
+  .cosmic-who { grid-template-columns: 1fr; padding: 80px 6% 110px; }
+  .cosmic-events-board { padding-inline: 18px; }
+  .cosmic-board-heading { align-items: start; gap: 14px; }
+  .cosmic-event-row, .cosmic-event-row.is-featured { flex-direction: column; align-items: stretch !important; gap: 20px !important; }
+  .cosmic-event-row.is-featured { padding: 24px !important; margin-right: 7px; }
+  .cosmic-event-date { width: 75px; height: 82px; }
+  .cosmic-event-date strong { font-size: 2.6rem; }
+  .cosmic-event-row [data-slot="item-actions"] { width: 100%; }
+  .cosmic-event-row [data-slot="item-actions"] a { width: 100%; min-height: 44px; }
+  .cosmic-event-meta { flex-direction: column; gap: 9px; }
+  .cosmic-event-tabs [data-slot="tabs-list"] { gap: 8px; }
+  .cosmic-event-tabs [data-slot="tabs-trigger"] { font-size: .7rem; }
+  .cosmic-workflow { padding-inline: 18px; }
+  .cosmic-workflow-list::before { left: 36px; }
+  .cosmic-workflow-item { gap: 16px !important; align-items: flex-start !important; }
+  .cosmic-workflow-item [data-slot="item-media"] { width: 74px; height: 92px; }
+  .cosmic-workflow-item [data-slot="item-media"] span { font-size: 1.35rem; }
+  .cosmic-workflow-item [data-slot="item-media"] svg { width: 20px; }
+  .cosmic-activity-field { padding-inline: 18px; }
+  .cosmic-workshop-poster { padding: 42px 22px; box-shadow: 8px 8px 0 #33d6ff; }
+  .cosmic-project-note, .cosmic-opportunity-map { padding: 30px 22px; }
+  .cosmic-opportunity-map div { grid-template-columns: 1fr; }
+  .cosmic-gallery-wall { grid-template-columns: 1fr; padding: 80px 18px 120px; }
+  .cosmic-gallery-note, .cosmic-gallery-slot, .cosmic-gallery-slot.wide-two, .cosmic-gallery-empty { grid-column: 1; width: auto; transform: none; }
+  .cosmic-leadership-board { padding-inline: 18px; }
+  .cosmic-role-ledger > div { flex-direction: column; }
+  .cosmic-role-ledger article { grid-template-columns: 55px 1fr; gap: 14px; }
+  .cosmic-role-ledger article p { grid-column: 2; }
+  .cosmic-footer-inner { grid-template-columns: 1fr; }
+  .cosmic-footer nav { justify-content: start; }
+  .cosmic-footer-inner > a:last-child { grid-column: 1; max-width: 100%; }
+}
+
+@media (max-width: 340px) {
+  .cosmic-site { overflow-wrap: anywhere; }
+  .cosmic-home-wall { padding-inline: 12px; }
+  .cosmic-page-intro, .cosmic-about-editorial, .cosmic-lbc, .cosmic-who { padding-inline: 16px; }
+  .cosmic-event-row.is-featured, .cosmic-workshop-poster, .cosmic-project-note, .cosmic-opportunity-map { padding-inline: 18px !important; }
+  .cosmic-workflow-item [data-slot="item-media"] { width: 64px; }
+}

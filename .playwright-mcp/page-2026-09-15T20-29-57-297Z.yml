@@ -1,0 +1,303 @@
+- generic [ref=f1e4]:
+  - banner [ref=f1e5]:
+    - generic [ref=f1e7]:
+      - generic [ref=f1e8]: GEORGIA STATE UNIVERSITY
+      - generic [ref=f1e9]: STUDENT ORGANIZATION / ATLANTA
+    - generic [ref=f1e10]:
+      - link "COSMIC poster prototype home" [ref=f1e11] [cursor=pointer]:
+        - /url: /design-lab/cosmic-poster-v2
+        - generic [ref=f1e12]:
+          - strong [ref=f1e13]: COSMIC
+          - generic [ref=f1e14]: Math · innovation · computing
+      - navigation "Prototype pages" [ref=f1e15]:
+        - list [ref=f1e16]:
+          - listitem [ref=f1e17]:
+            - link "01 About" [ref=f1e18] [cursor=pointer]:
+              - /url: /about
+              - generic [ref=f1e19]: "01"
+              - text: About
+          - listitem [ref=f1e20]:
+            - link "02 Events" [ref=f1e21] [cursor=pointer]:
+              - /url: /events
+              - generic [ref=f1e22]: "02"
+              - text: Events
+          - listitem [ref=f1e23]:
+            - link "03 Activities" [ref=f1e24] [cursor=pointer]:
+              - /url: /activities
+              - generic [ref=f1e25]: "03"
+              - text: Activities
+          - listitem [ref=f1e26]:
+            - link "04 Club Moments" [ref=f1e27] [cursor=pointer]:
+              - /url: /gallery
+              - generic [ref=f1e28]: "04"
+              - text: Club Moments
+          - listitem [ref=f1e29]:
+            - link "05 Leadership" [ref=f1e30] [cursor=pointer]:
+              - /url: /leadership
+              - generic [ref=f1e31]: "05"
+              - text: Leadership
+      - link "View Design2V2 ↗" [ref=f1e32] [cursor=pointer]:
+        - /url: /design-2-v2
+  - main [ref=f1e33]:
+    - generic [ref=f1e34]:
+      - generic [ref=f1e35]:
+        - generic [ref=f1e36]:
+          - paragraph [ref=f1e37]: COMMUNITY OF STUDENTS IN MATH, INNOVATION, AND COMPUTING
+          - paragraph [ref=f1e38]: COSMIC GSU
+          - heading [level=1] [ref=f1e39]:
+            - text: Where math,science, and
+            - emphasis [ref=f1e40]: code meet.
+          - paragraph [ref=f1e41]: A student-run Georgia State community for exploring scientific computing through workshops, projects, experiments, and the people doing the work.
+          - generic [ref=f1e42]:
+            - button "Start here" [ref=f1e43] [cursor=pointer]
+            - button "See what’s next" [ref=f1e44] [cursor=pointer]
+          - paragraph [ref=f1e45]: No experience required. Bring a question, a laptop, or just your curiosity.
+          - paragraph [aria-hidden] [ref=f1e49]: start anywhere — follow the question ↘
+        - generic [ref=f1e50]:
+          - text: COMPUTE / COLLABORATE / QUESTION
+          - generic [ref=f1e52]: STUDENTBUILT
+          - generic [aria-hidden] [ref=f1e54]:
+            - generic [ref=f1e57]: QUESTION
+            - generic [ref=f1e64]: INPUT → METHOD → OUTPUT
+          - generic [ref=f1e65]:
+            - generic [ref=f1e66]: FIELD NOTE / 00
+            - code [ref=f1e67]: community.learn(together)
+          - img "COSMIC logo" [ref=f1e68]
+      - generic [ref=f1e69]:
+        - generic [ref=f1e70]: MATHEMATICS
+        - generic [ref=f1e73]: SCIENCE
+        - generic [ref=f1e76]: COMPUTING
+        - generic [ref=f1e81]: COMMUNITY
+    - region "COSMIC digital student club wall" [ref=f1e87]:
+      - generic [ref=f1e88]:
+        - generic [ref=f1e89]: WALL / FALL STUDIES
+        - generic [ref=f1e90]: ATLANTA, GA · STUDENT BUILT
+      - navigation "Poster wall index" [ref=f1e91]:
+        - generic [ref=f1e92]: PINBOARD INDEX
+        - link "01 WHY" [ref=f1e93] [cursor=pointer]:
+          - /url: /about
+          - generic [ref=f1e94]: "01"
+          - text: WHY
+        - link "02 NEXT" [ref=f1e95] [cursor=pointer]:
+          - /url: /events
+          - generic [ref=f1e96]: "02"
+          - text: NEXT
+        - link "03 MAKE" [ref=f1e97] [cursor=pointer]:
+          - /url: /activities
+          - generic [ref=f1e98]: "03"
+          - text: MAKE
+        - link "04 MOMENTS" [ref=f1e99] [cursor=pointer]:
+          - /url: /gallery
+          - generic [ref=f1e100]: "04"
+          - text: MOMENTS
+        - link "05 PEOPLE" [ref=f1e101] [cursor=pointer]:
+          - /url: /leadership
+          - generic [ref=f1e102]: "05"
+          - text: PEOPLE
+      - article [ref=f1e103]:
+        - generic [aria-hidden] [ref=f1e104]: +
+        - paragraph [ref=f1e105]: ABOUT THE CLUB / NOTE 01
+        - heading [level=2] [ref=f1e106]:
+          - text: Scientificcomputing,
+          - emphasis [ref=f1e107]: outside
+          - text: thesyllabus.
+        - generic [ref=f1e108]:
+          - paragraph [ref=f1e109]: COSMIC is where Georgia State students learn by doing—asking questions, trying technical tools, and working alongside people who are figuring it out too.
+          - generic [ref=f1e110]:
+            - generic [ref=f1e111]: ASK MESSY QUESTIONS
+            - generic [ref=f1e112]: LEARN IN PUBLIC
+            - generic [ref=f1e113]: MAKE SOMETHING
+        - generic [ref=f1e114]:
+          - generic [ref=f1e115]: BEGINNER FRIENDLY / STUDENT RUN
+          - generic [ref=f1e116]: LEARN → TEST → BUILD → SHARE
+        - text: Σ
+      - link "NEW HERE? What is COSMIC? OPEN NOTE" [ref=f1e117] [cursor=pointer]:
+        - /url: /about
+        - generic [aria-hidden] [ref=f1e118]: 01 / READ
+        - generic [ref=f1e120]: NEW HERE?
+        - strong [ref=f1e121]: What isCOSMIC?
+        - generic [ref=f1e123]: OPEN NOTE
+      - article [ref=f1e127]:
+        - generic [ref=f1e128]:
+          - generic [ref=f1e129]: EVENT BOARD / LIVE FROM PIN
+          - generic [ref=f1e130]: SYNCED WITH GSU
+        - heading "Next on the wall." [level=2] [ref=f1e134]: Nexton the wall.
+        - generic [ref=f1e135]:
+          - generic [ref=f1e136]: —
+          - generic [ref=f1e138]:
+            - generic [ref=f1e139]: No upcoming event is posted yet.
+            - paragraph [ref=f1e140]: The next workshop, meeting, or project session will be pinned here when it is published on PIN.
+        - link "SEE ALL EVENTS" [ref=f1e141] [cursor=pointer]:
+          - /url: /events
+      - link "NEXT UP → Events & meetings OPEN NOTE" [ref=f1e144] [cursor=pointer]:
+        - /url: /events
+        - generic [aria-hidden] [ref=f1e145]: 02 / GO
+        - generic [ref=f1e147]: NEXT UP →
+        - strong [ref=f1e148]: Events &meetings
+        - generic [ref=f1e150]: OPEN NOTE
+      - link "WORKSHOP ARCHIVE Explore what we do. OPEN NOTE" [ref=f1e154] [cursor=pointer]:
+        - /url: /activities
+        - generic [aria-hidden] [ref=f1e155]: 03 / TRY
+        - generic [ref=f1e157]: WORKSHOP ARCHIVE
+        - strong [ref=f1e158]: Explore whatwe do.
+        - generic [ref=f1e160]: OPEN NOTE
+      - article [ref=f1e164]:
+        - generic [ref=f1e165]: "02"
+        - paragraph [ref=f1e166]: WHAT ARE WE BUILDING?
+        - heading [level=2] [ref=f1e167]:
+          - text: TOOLS FOR
+          - emphasis [ref=f1e168]: CURIOUS
+          - text: PEOPLE.
+        - generic [ref=f1e169]:
+          - generic [ref=f1e170]: INPUT
+          - code [ref=f1e171]: question + laptop + team
+          - generic [ref=f1e172]: OUTPUT
+          - code [ref=f1e173]: something worth sharing
+        - list [ref=f1e174]:
+          - generic [ref=f1e175]:
+            - generic [ref=f1e176]: "01"
+            - generic [ref=f1e178]:
+              - generic [ref=f1e179]: LEARN
+              - generic [ref=f1e180]: Hands-on workshops
+              - paragraph [ref=f1e181]: Python · data · scientific tools
+          - generic [ref=f1e185]:
+            - generic [ref=f1e186]: "02"
+            - generic [ref=f1e188]:
+              - generic [ref=f1e189]: BUILD
+              - generic [ref=f1e190]: Hackathons & projects
+              - paragraph [ref=f1e191]: Build with a small team
+          - generic [ref=f1e195]:
+            - generic [ref=f1e196]: "03"
+            - generic [ref=f1e198]:
+              - generic [ref=f1e199]: CONNECT
+              - generic [ref=f1e200]: Guest speakers
+              - paragraph [ref=f1e201]: Research and industry conversations
+          - generic [ref=f1e205]:
+            - generic [ref=f1e206]: "04"
+            - generic [ref=f1e208]:
+              - generic [ref=f1e209]: TEST
+              - generic [ref=f1e210]: Scientific computing
+              - paragraph [ref=f1e211]: Models · questions · experiments
+      - article [ref=f1e215]:
+        - generic [ref=f1e217]:
+          - paragraph [ref=f1e218]: CLUB MOMENTS / ARCHIVE 04
+          - heading "From the club." [level=2] [ref=f1e219]
+        - region "Club moments preview" [ref=f1e224]:
+          - generic [ref=f1e226]:
+            - group [ref=f1e227]:
+              - figure "ARCHIVE SLOT / 01 The workshop table A wide frame for real hands-on sessions." [ref=f1e228]:
+                - generic [ref=f1e229]: ARCHIVE SLOT / 01AWAITING REAL CLUB MEDIA
+                - generic [ref=f1e233]:
+                  - generic [ref=f1e234]: ARCHIVE SLOT / 01
+                  - strong [ref=f1e235]: The workshop table
+                  - generic [ref=f1e236]: A wide frame for real hands-on sessions.
+            - group [ref=f1e237]:
+              - figure "ARCHIVE SLOT / 02 Project in progress Room for code, notebooks, and the mess between." [ref=f1e238]:
+                - generic [ref=f1e239]: ARCHIVE SLOT / 02AWAITING REAL CLUB MEDIA
+                - generic [ref=f1e246]:
+                  - generic [ref=f1e247]: ARCHIVE SLOT / 02
+                  - strong [ref=f1e248]: Project in progress
+                  - generic [ref=f1e249]: Room for code, notebooks, and the mess between.
+            - group [ref=f1e250]:
+              - figure "ARCHIVE SLOT / 03 People behind the work Only real COSMIC moments belong here." [ref=f1e251]:
+                - generic [ref=f1e252]: ARCHIVE SLOT / 03AWAITING REAL CLUB MEDIA
+                - generic [ref=f1e261]:
+                  - generic [ref=f1e262]: ARCHIVE SLOT / 03
+                  - strong [ref=f1e263]: People behind the work
+                  - generic [ref=f1e264]: Only real COSMIC moments belong here.
+          - generic [ref=f1e265]:
+            - button "Previous slide" [disabled]
+            - generic [ref=f1e266]: DRAG / USE ARROWS
+            - button "Next slide" [ref=f1e267]
+        - generic [ref=f1e269]:
+          - paragraph [ref=f1e272]: No stock photos. No generated students.
+          - generic [ref=f1e273]: Real club moments will be pinned here with dates and captions.
+        - link "OPEN THE PHOTO WALL" [ref=f1e274] [cursor=pointer]:
+          - /url: /gallery
+      - link "FROM THE CLUB → See what we’ve been up to. OPEN NOTE" [ref=f1e277] [cursor=pointer]:
+        - /url: /gallery
+        - generic [aria-hidden] [ref=f1e278]: 04 / LOOK
+        - generic [ref=f1e280]: FROM THE CLUB →
+        - strong [ref=f1e281]: See whatwe’ve been up to.
+        - generic [ref=f1e283]: OPEN NOTE
+      - link "MEET THE STUDENTS Behind COSMIC → OPEN NOTE" [ref=f1e287] [cursor=pointer]:
+        - /url: /leadership
+        - generic [aria-hidden] [ref=f1e288]: 05 / MEET
+        - generic [ref=f1e290]: MEET THE STUDENTS
+        - strong [ref=f1e291]: BehindCOSMIC →
+        - generic [ref=f1e293]: OPEN NOTE
+      - article [ref=f1e297]:
+        - generic [ref=f1e298]: STUDENT RUN / 05
+        - generic [ref=f1e299]:
+          - generic [ref=f1e300]:
+            - paragraph [ref=f1e301]: WHO KEEPS COSMIC MOVING?
+            - heading "The officer team." [level=2] [ref=f1e302]: The officerteam.
+          - blockquote [ref=f1e303]:
+            - text: Organized by students.
+            - emphasis [ref=f1e305]: Built with everyone in the room.
+        - generic [ref=f1e306]:
+          - generic [ref=f1e307]:
+            - generic [ref=f1e308]: "01"
+            - strong [ref=f1e309]: President
+            - generic [ref=f1e310]: Club direction & community
+            - generic [aria-hidden] [ref=f1e311]: →
+          - generic [ref=f1e312]:
+            - generic [ref=f1e313]: "02"
+            - strong [ref=f1e314]: Vice President
+            - generic [ref=f1e315]: Programs & partnerships
+            - generic [aria-hidden] [ref=f1e316]: →
+          - generic [ref=f1e317]:
+            - generic [ref=f1e318]: "03"
+            - strong [ref=f1e319]: Secretary
+            - generic [ref=f1e320]: Communication & records
+            - generic [aria-hidden] [ref=f1e321]: →
+          - generic [ref=f1e322]:
+            - generic [ref=f1e323]: "04"
+            - strong [ref=f1e324]: Treasurer
+            - generic [ref=f1e325]: Resources & planning
+            - generic [aria-hidden] [ref=f1e326]: →
+        - paragraph [ref=f1e327]: Names and profiles appear only when confirmed club information is available.
+    - generic [ref=f1e328]:
+      - generic [ref=f1e329]:
+        - paragraph [ref=f1e330]: YOUR FIRST MEETING / NO PREREQUISITES
+        - heading [level=2] [ref=f1e331]:
+          - text: Curiosity is
+          - emphasis [ref=f1e332]: enough
+          - text: to begin.
+        - paragraph [ref=f1e333]: COSMIC welcomes Georgia State undergraduates who want to explore mathematics, science, data, computing, research, and collaborative problem solving.
+        - complementary [ref=f1e334]:
+          - text: FIRST VISIT / FIELD NOTE
+          - list [ref=f1e335]:
+            - listitem [ref=f1e336]:
+              - generic [ref=f1e337]: "01"
+              - text: Arrive curious.
+            - listitem [ref=f1e338]:
+              - generic [ref=f1e339]: "02"
+              - text: Choose your pace.
+            - listitem [ref=f1e340]:
+              - generic [ref=f1e341]: "03"
+              - text: Leave with a next step.
+      - generic [ref=f1e342]:
+        - generic [ref=f1e343]:
+          - generic [ref=f1e344]:
+            - heading [level=3] [ref=f1e345]:
+              - button "Do I need technical experience?" [expanded] [ref=f1e346]
+            - region "Do I need technical experience?" [ref=f1e347]:
+              - paragraph [ref=f1e349]: No. Workshops and meetings are designed to give beginners a practical place to start, while experienced students can take ideas further.
+          - heading [level=3] [ref=f1e351]:
+            - button "What happens at a first meeting?" [ref=f1e352]
+          - heading [level=3] [ref=f1e354]:
+            - button "What should I bring?" [ref=f1e355]
+          - heading [level=3] [ref=f1e357]:
+            - button "How do I follow or contact COSMIC?" [ref=f1e358]
+        - generic [ref=f1e359]:
+          - button "Find COSMIC on PIN" [ref=f1e360] [cursor=pointer]
+          - button "Check the event board" [ref=f1e361] [cursor=pointer]
+  - contentinfo [ref=f1e362]:
+    - generic [ref=f1e363]:
+      - strong [ref=f1e364]: COSMIC
+      - generic [ref=f1e365]: Community of Students in Math, Innovation, and Computing
+      - generic [ref=f1e366]: Georgia State University · Design exploration only
+    - separator [ref=f1e367]
+    - link "Compare with Design2V2 ↗" [ref=f1e368] [cursor=pointer]:
+      - /url: /design-2-v2

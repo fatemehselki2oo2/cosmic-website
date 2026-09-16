@@ -1,0 +1,65 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Skip to content" [ref=e2] [cursor=pointer]:
+        - /url: "#top-content"
+      - banner [ref=e3]:
+        - generic [ref=e4]:
+          - navigation [ref=e5]:
+            - button "toggle navigation drawer" [ref=e6] [cursor=pointer]
+          - link [ref=e10] [cursor=pointer]:
+            - /url: /
+            - img "Panther Involvement Network (PIN)" [ref=e11]
+          - button "Search entire site" [ref=e12]: Search...
+          - link "Sign In" [ref=e16] [cursor=pointer]:
+            - /url: /account/login?returnUrl=/organization/cosmic/events
+  - main [ref=e20]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - heading "Community of Students in Math, Innovation, and Computing Events" [level=1] [ref=e24]
+        - button "Show Upcoming Events" [ref=e27] [cursor=pointer]
+      - generic [ref=e30]: The following events have ended.
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - heading "Filter Options" [level=2] [ref=e33]
+          - generic [ref=e36]:
+            - heading "Search" [level=3] [ref=e37]
+            - search "Search Events" [ref=e38]:
+              - generic [ref=e43]:
+                - generic: Search Events
+                - searchbox "Search Events" [ref=e44]
+                - separator [aria-hidden] [ref=e45]
+        - generic [ref=e46]:
+          - heading "Search Results" [level=2] [ref=e47]
+          - generic [ref=e48]:
+            - paragraph [ref=e50]: Showing 2 out of 2 events.
+            - generic [ref=e53]:
+              - 'link "Ended 5 months ago ARCTIC 101 — Session 5: Running Workloads on ARCTIC (SLURM) happening on Friday, April 17 at 1:00PM EDT located at CTB 410 Hosted by 2 organizations" [ref=e55] [cursor=pointer]':
+                - /url: /event/12360005
+                - generic [ref=e56]:
+                  - generic [ref=e60]:
+                    - generic [aria-hidden] [ref=e61]: 
+                    - text: Ended 5 months ago
+                  - 'heading "ARCTIC 101 — Session 5: Running Workloads on ARCTIC (SLURM)" [level=3] [ref=e66]'
+                  - generic [ref=e67]:
+                    - generic [ref=e68]:
+                      - generic "happening on Friday, April 17 at 1:00PM EDT" [ref=e69]: Friday, April 17 at 1:00PM EDT
+                      - generic "located at CTB 410" [ref=e72]: CTB 410
+                    - generic [ref=e75]: Hosted by 2 organizations
+              - 'link "Ended 6 months ago ARCTIC 101 — Session 3: SSH & Remote Workflows happening on Friday, March 6 at 1:00PM EST located at CTB 410 Hosted by 2 organizations" [ref=e83] [cursor=pointer]':
+                - /url: /event/12274352
+                - generic [ref=e84]:
+                  - generic [ref=e88]:
+                    - generic [aria-hidden] [ref=e89]: 
+                    - text: Ended 6 months ago
+                  - 'heading "ARCTIC 101 — Session 3: SSH & Remote Workflows" [level=3] [ref=e94]'
+                  - generic [ref=e95]:
+                    - generic [ref=e96]:
+                      - generic "happening on Friday, March 6 at 1:00PM EST" [ref=e97]: Friday, March 6 at 1:00PM EST
+                      - generic "located at CTB 410" [ref=e100]: CTB 410
+                    - generic [ref=e103]: Hosted by 2 organizations
+      - generic [ref=e110]:
+        - link "iCal Feed" [ref=e111] [cursor=pointer]:
+          - /url: /organization/cosmic/events.ics
+        - link "RSS Feed" [ref=e112] [cursor=pointer]:
+          - /url: /organization/cosmic/events.rss

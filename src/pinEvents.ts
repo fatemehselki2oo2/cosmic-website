@@ -95,3 +95,25 @@ export async function fetchCosmicEvents(signal?: AbortSignal): Promise<CosmicEve
     .map(mapPinEvent)
     .filter((event): event is CosmicEvent => event !== null)
 }
+
+export async function fetchCosmicPastEvents(signal?: AbortSignal): Promise<CosmicEvent[]> {
+  const now = new Date()
+  const params = new URLSearchParams({
+    endsBefore: now.toISOString(),
+    orderByField: 'endsOn',
+    orderByDirection: 'descending',
+    status: 'Approved',
+    take: '20',
+  })
+  params.append('organizationIds[0]', COSMIC_ORGANIZATION_ID)
+
+  const response = await fetch(`${PIN_EVENTS_PATH}?${params}`, { headers: { Accept: 'application/json' }, signal })
+  if (!response.ok) throw new Error(`PIN returned HTTP ${response.status}`)
+
+  const payload = await response.json() as PinSearchResponse
+  return (payload.value ?? [])
+    .filter(event => Boolean(event.endsOn) && new Date(event.endsOn as string).getTime() < now.getTime())
+    .sort((a, b) => new Date(b.endsOn as string).getTime() - new Date(a.endsOn as string).getTime())
+    .map(mapPinEvent)
+    .filter((event): event is CosmicEvent => event !== null)
+}

@@ -1,7 +1,13 @@
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import logo from '../Final Logo.png'
 import DesignPage from './DesignPage'
 import Design2V2 from './Design2V2'
+
+const DesignLab = lazy(() => import('./design-lab/DesignLab'))
+const CosmicPosterV2 = lazy(() => import('./design-lab/CosmicPosterV2'))
+const CosmicSite = lazy(() => import('./cosmic-site/CosmicSite'))
+
+const cosmicSitePages = ['/about', '/events', '/activities', '/gallery', '/leadership']
 
 const activities = [
   ['Hands-On Workshops', 'Students develop practical skills in programming, data analysis, scientific computing, computational modeling, and technical tools.'],
@@ -29,7 +35,11 @@ const officers = [
 ]
 
 function App() {
-  if (window.location.pathname === '/' || window.location.pathname.match(/^\/design-2-v2\/?$/)) return <Design2V2 />
+  if (window.location.pathname.match(/^\/design-lab\/cosmic-poster-v2\/?$/)) return <Suspense fallback={<div aria-live="polite">Loading COSMIC poster prototype…</div>}><CosmicPosterV2 /></Suspense>
+  if (window.location.pathname.match(/^\/design-lab(?:\/.*)?$/)) return <Suspense fallback={<div aria-live="polite">Loading design prototype…</div>}><DesignLab /></Suspense>
+  if (window.location.pathname.match(/^\/?$/)) return <Suspense fallback={<div aria-live="polite">Loading COSMIC poster…</div>}><CosmicPosterV2 /></Suspense>
+  if (cosmicSitePages.includes(window.location.pathname.replace(/\/$/, '') || '/')) return <Suspense fallback={<div aria-live="polite">Loading COSMIC…</div>}><CosmicSite /></Suspense>
+  if (window.location.pathname.match(/^\/design-2-v2\/?$/)) return <Design2V2 />
   const match = window.location.pathname.match(/^\/design-([123])\/?$/)
   if (match) return <DesignPage variant={Number(match[1]) as 1 | 2 | 3} />
 

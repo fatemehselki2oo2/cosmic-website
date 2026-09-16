@@ -1,0 +1,36 @@
+- generic [ref=f26e4]:
+  - banner [ref=f26e5]:
+    - generic [ref=f26e6]: GEORGIA STATE UNIVERSITY
+    - generic [ref=f26e9]:
+      - link "COSMIC home" [ref=f26e10] [cursor=pointer]:
+        - /url: /
+        - strong [ref=f26e12]: COSMIC
+      - button "Open site navigation" [ref=f26e13]
+  - main [ref=f26e15]:
+    - generic [ref=f26e16]:
+      - generic [ref=f26e17]: E–02
+      - generic [ref=f26e18]:
+        - paragraph [ref=f26e19]: EVENTS / CAMPUS BOARD
+        - heading "The next thing on the wall." [level=1] [ref=f26e20]
+        - paragraph [ref=f26e21]: Workshops, guest conversations, project nights, and meetings—connected to the official COSMIC listing on Georgia State PIN.
+    - generic [ref=f26e23]:
+      - generic [ref=f26e24]: FEATURED / NEXT
+      - paragraph [ref=f26e25]: Live from Georgia State PIN
+  - contentinfo [ref=f26e32]:
+    - generic [ref=f26e33]:
+      - link [ref=f26e34] [cursor=pointer]:
+        - /url: /
+        - strong [ref=f26e36]: COSMIC
+      - navigation "Footer navigation" [ref=f26e37]:
+        - link "About" [ref=f26e38] [cursor=pointer]:
+          - /url: /about
+        - link "Events" [ref=f26e39] [cursor=pointer]:
+          - /url: /events
+        - link "Activities" [ref=f26e40] [cursor=pointer]:
+          - /url: /activities
+        - link "Club Moments" [ref=f26e41] [cursor=pointer]:
+          - /url: /gallery
+        - link "Leadership" [ref=f26e42] [cursor=pointer]:
+          - /url: /leadership
+      - link "Official COSMIC page on PIN" [ref=f26e43] [cursor=pointer]:
+        - /url: https://pin.gsu.edu/organization/cosmic

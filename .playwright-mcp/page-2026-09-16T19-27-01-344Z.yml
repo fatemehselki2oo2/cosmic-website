@@ -1,0 +1,73 @@
+- generic [ref=f24e3]:
+  - banner [ref=f24e4]:
+    - generic [ref=f24e5]: GEORGIA STATE UNIVERSITY
+    - generic [ref=f24e8]:
+      - link "COSMIC home" [ref=f24e9] [cursor=pointer]:
+        - /url: /
+        - strong [ref=f24e11]: COSMIC
+      - button "Open site navigation" [ref=f24e12]
+  - main [ref=f24e14]:
+    - generic [ref=f24e15]:
+      - generic [ref=f24e16]: A–01
+      - generic [ref=f24e17]:
+        - paragraph [ref=f24e18]: ABOUT COSMIC / LAB NOTE
+        - heading "Scientific computing, outside the syllabus." [level=1] [ref=f24e19]
+        - paragraph [ref=f24e20]: COSMIC is a Georgia State undergraduate organization where mathematics, science, computing, and innovation meet through practical, collaborative work.
+    - generic [ref=f24e21]:
+      - complementary [ref=f24e22]:
+        - text: MARGIN NOTE / 01
+        - paragraph [ref=f24e23]: Scientific computing means using computation to investigate questions in mathematics and science.
+        - text: It can look like code, data, simulation, visualization, modeling—or a better question.
+      - article [ref=f24e24]:
+        - paragraph [ref=f24e25]: "COSMIC creates room for students to explore scientific computing beyond coursework: learning useful tools, trying them with peers, and connecting technical practice to research, projects, and careers."
+        - blockquote [ref=f24e26]: Curiosity is enough to begin. Experience is something we build together.
+        - paragraph [ref=f24e27]: The club is for Georgia State undergraduates who are curious about mathematics, science, data, technology, research, or problem solving. Beginners are welcome, and students with experience have space to experiment, collaborate, and share what they know.
+    - generic [ref=f24e28]:
+      - generic [ref=f24e29]: MISSION
+      - paragraph [ref=f24e30]: Make scientific computing approachable, practical, social, and connected to real student interests.
+      - generic [aria-hidden] [ref=f24e31]: question → method → evidence → conversation
+    - region [ref=f24e32]:
+      - generic [ref=f24e33]:
+        - paragraph [ref=f24e34]: OUR WORKING MODEL
+        - heading "Learn / Build / Connect" [level=2] [ref=f24e35]
+      - generic [ref=f24e36]:
+        - article [ref=f24e37]:
+          - text: "01"
+          - heading "Learn" [level=3] [ref=f24e40]
+          - paragraph [ref=f24e41]: Develop technical and analytical skills through workshops and shared practice.
+        - article [ref=f24e42]:
+          - text: "02"
+          - heading "Build" [level=3] [ref=f24e46]
+          - paragraph [ref=f24e47]: Apply mathematics and computing to projects, investigations, and meaningful problems.
+        - article [ref=f24e48]:
+          - text: "03"
+          - heading "Connect" [level=3] [ref=f24e54]
+          - paragraph [ref=f24e55]: Meet students, faculty, researchers, and professionals with overlapping questions.
+    - generic [ref=f24e56]:
+      - generic [ref=f24e57]:
+        - text: WHO THIS IS FOR
+        - heading "Not one major. Not one starting point." [level=2] [ref=f24e58]: Not one major.Not one starting point.
+      - list [ref=f24e59]:
+        - listitem [ref=f24e60]: Students trying scientific computing for the first time
+        - listitem [ref=f24e61]: Students looking for collaborators beyond class
+        - listitem [ref=f24e62]: Students exploring research or technical careers
+        - listitem [ref=f24e63]: Students who learn by making, testing, and asking
+      - paragraph [ref=f24e64]: No gatekeeping. No prerequisite list. ↗
+  - contentinfo [ref=f24e65]:
+    - generic [ref=f24e66]:
+      - link [ref=f24e67] [cursor=pointer]:
+        - /url: /
+        - strong [ref=f24e69]: COSMIC
+      - navigation "Footer navigation" [ref=f24e70]:
+        - link "About" [ref=f24e71] [cursor=pointer]:
+          - /url: /about
+        - link "Events" [ref=f24e72] [cursor=pointer]:
+          - /url: /events
+        - link "Activities" [ref=f24e73] [cursor=pointer]:
+          - /url: /activities
+        - link "Club Moments" [ref=f24e74] [cursor=pointer]:
+          - /url: /gallery
+        - link "Leadership" [ref=f24e75] [cursor=pointer]:
+          - /url: /leadership
+      - link "Official COSMIC page on PIN" [ref=f24e76] [cursor=pointer]:
+        - /url: https://pin.gsu.edu/organization/cosmic

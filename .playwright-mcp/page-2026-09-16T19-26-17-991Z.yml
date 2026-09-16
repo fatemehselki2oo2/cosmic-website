@@ -1,0 +1,200 @@
+- generic [ref=f23e1]:
+  - generic [ref=f23e4]:
+    - banner [ref=f23e5]:
+      - generic [ref=f23e6]: GEORGIA STATE UNIVERSITY
+      - generic [ref=f23e9]:
+        - link [ref=f23e197] [cursor=pointer]:
+          - /url: /
+          - strong [ref=f23e12]: COSMIC
+        - button [expanded] [ref=f23e198]
+    - main [ref=f23e15]:
+      - generic [ref=f23e16]:
+        - generic [ref=f23e17]:
+          - generic [ref=f23e18]:
+            - paragraph [ref=f23e19]: COMMUNITY OF STUDENTS IN MATH, INNOVATION, AND COMPUTING
+            - paragraph [ref=f23e20]: COSMIC GSU
+            - heading [level=1] [ref=f23e199]:
+              - text: Where math, science, and
+              - emphasis [ref=f23e22]: code meet.
+            - paragraph [ref=f23e23]: A student-run Georgia State community for exploring scientific computing through workshops, projects, experiments, and the people doing the work.
+            - generic [ref=f23e24]:
+              - button [ref=f23e200] [cursor=pointer]: Start here
+              - button [ref=f23e201] [cursor=pointer]: See what’s next
+            - paragraph [ref=f23e27]: No experience required. Bring a question, a laptop, or just your curiosity.
+            - paragraph [aria-hidden] [ref=f23e31]: start anywhere — follow the question ↘
+          - generic [ref=f23e32]:
+            - text: COMPUTE / COLLABORATE / QUESTION
+            - generic [ref=f23e34]: STUDENTBUILT
+            - generic [aria-hidden] [ref=f23e36]:
+              - generic [ref=f23e39]: QUESTION
+              - generic [ref=f23e46]: INPUT → METHOD → OUTPUT
+            - generic [ref=f23e47]:
+              - generic [ref=f23e48]: FIELD NOTE / 00
+              - code [ref=f23e49]: community.learn(together)
+        - generic [ref=f23e51]:
+          - generic [ref=f23e52]: MATHEMATICS
+          - generic [ref=f23e55]: SCIENCE
+          - generic [ref=f23e58]: COMPUTING
+          - generic [ref=f23e63]: COMMUNITY
+      - region [ref=f23e203]:
+        - generic [ref=f23e70]: WALL / START HERE
+        - navigation [ref=f23e204]:
+          - generic [ref=f23e73]: PINBOARD INDEX
+          - link [ref=f23e205] [cursor=pointer]:
+            - /url: /about
+            - generic [ref=f23e75]: "01"
+            - text: ABOUT
+          - link [ref=f23e206] [cursor=pointer]:
+            - /url: /events
+            - generic [ref=f23e77]: "02"
+            - text: EVENTS
+          - link [ref=f23e207] [cursor=pointer]:
+            - /url: /activities
+            - generic [ref=f23e79]: "03"
+            - text: ACTIVITIES
+          - link [ref=f23e208] [cursor=pointer]:
+            - /url: /gallery
+            - generic [ref=f23e81]: "04"
+            - text: CLUB MOMENTS
+          - link [ref=f23e209] [cursor=pointer]:
+            - /url: /leadership
+            - generic [ref=f23e83]: "05"
+            - text: LEADERSHIP
+        - article [ref=f23e84]:
+          - text: ABOUT / 01
+          - heading [level=2] [ref=f23e210]:
+            - text: Scientific computing,
+            - emphasis [ref=f23e86]: outside the syllabus.
+          - paragraph [ref=f23e87]: We make room to learn a tool, test an idea with other students, build something, and share what happened.
+          - link [ref=f23e211] [cursor=pointer]:
+            - /url: /about
+            - text: Read the field notes
+        - link [ref=f23e212] [cursor=pointer]:
+          - /url: /about
+          - generic [aria-hidden] [ref=f23e92]: "01"
+          - generic [ref=f23e94]: WHY COSMIC?
+          - strong [ref=f23e95]: Curiosity belongs here.
+          - generic [ref=f23e96]: OPEN NOTE
+        - region [ref=f23e213]:
+          - text: EVENT BOARD / 02
+          - heading [level=2] [ref=f23e214]: The next thing on the wall.
+          - paragraph [ref=f23e101]: Workshops, project nights, meetings, and guest conversations—pulled from Georgia State PIN.
+          - link [ref=f23e215] [cursor=pointer]:
+            - /url: /events
+            - text: Open the event board
+        - link [ref=f23e216] [cursor=pointer]:
+          - /url: /events
+          - generic [aria-hidden] [ref=f23e108]: "02"
+          - generic [ref=f23e110]: NEXT UP
+          - strong [ref=f23e111]: Find the next session.
+          - generic [ref=f23e112]: OPEN NOTE
+        - region [ref=f23e217]:
+          - generic [ref=f23e116]:
+            - generic [ref=f23e117]: METHOD / 03
+            - code [ref=f23e118]: learn(tool)
+            - code [ref=f23e119]: test(together)
+            - code [ref=f23e120]: build(question)
+            - code [ref=f23e121]: share(result)
+          - generic [ref=f23e122]:
+            - heading [level=2] [ref=f23e218]: The work is the point.
+            - paragraph [ref=f23e124]: From Python workshops to computational models, activities are designed to turn curiosity into practice.
+            - link [ref=f23e219] [cursor=pointer]:
+              - /url: /activities
+              - text: See how COSMIC works
+        - link [ref=f23e220] [cursor=pointer]:
+          - /url: /activities
+          - generic [aria-hidden] [ref=f23e129]: "03"
+          - generic [ref=f23e131]: MAKE SOMETHING
+          - strong [ref=f23e132]: Learn → test → build → share.
+          - generic [ref=f23e133]: OPEN NOTE
+        - generic [ref=f23e136]:
+          - generic [ref=f23e137]: REAL MOMENTS ONLY
+          - generic [ref=f23e143]:
+            - text: ARCHIVE / 04
+            - heading [level=2] [ref=f23e221]: A wall for what actually happened.
+            - paragraph [ref=f23e145]: The gallery is ready for real COSMIC photographs—not stock students or made-up events.
+            - link [ref=f23e222] [cursor=pointer]:
+              - /url: /gallery
+              - text: Visit the club archive
+        - link [ref=f23e223] [cursor=pointer]:
+          - /url: /gallery
+          - generic [aria-hidden] [ref=f23e150]: "04"
+          - generic [ref=f23e152]: CLUB MOMENTS
+          - strong [ref=f23e153]: The people. The mess. The work.
+          - generic [ref=f23e154]: OPEN NOTE
+        - generic [ref=f23e157]:
+          - text: PEOPLE / 05
+          - heading [level=2] [ref=f23e224]: Student-led, honestly shown.
+          - paragraph [ref=f23e159]: Officer profiles will be published when the real roster and student-provided details are available.
+          - link [ref=f23e225] [cursor=pointer]:
+            - /url: /leadership
+            - text: Meet the roles
+        - link [ref=f23e226] [cursor=pointer]:
+          - /url: /leadership
+          - generic [aria-hidden] [ref=f23e169]: "05"
+          - generic [ref=f23e171]: WHO KEEPS IT MOVING
+          - strong [ref=f23e172]: Meet the team—when the team is confirmed.
+          - generic [ref=f23e173]: OPEN NOTE
+      - generic [ref=f23e176]:
+        - paragraph [ref=f23e177]: YOUR NEXT STEP / OPEN INVITATION
+        - heading [level=2] [ref=f23e227]: Bring a question. Find your people.
+        - paragraph [ref=f23e179]: Georgia State students at any experience level are welcome to start with a meeting, a workshop, or a conversation.
+        - button [ref=f23e228] [cursor=pointer]: Join COSMIC on PIN
+    - contentinfo [ref=f23e181]:
+      - generic [ref=f23e182]:
+        - link [ref=f23e229] [cursor=pointer]:
+          - /url: /
+          - strong [ref=f23e185]: COSMIC
+        - navigation [ref=f23e230]:
+          - link [ref=f23e231] [cursor=pointer]:
+            - /url: /about
+            - text: About
+          - link [ref=f23e232] [cursor=pointer]:
+            - /url: /events
+            - text: Events
+          - link [ref=f23e233] [cursor=pointer]:
+            - /url: /activities
+            - text: Activities
+          - link [ref=f23e234] [cursor=pointer]:
+            - /url: /gallery
+            - text: Club Moments
+          - link [ref=f23e235] [cursor=pointer]:
+            - /url: /leadership
+            - text: Leadership
+        - link [ref=f23e236] [cursor=pointer]:
+          - /url: https://pin.gsu.edu/organization/cosmic
+          - text: Official COSMIC page on PIN
+  - dialog [ref=f23e240]:
+    - generic [ref=f23e241]:
+      - heading "COSMIC / INDEX" [level=2] [ref=f23e242]
+      - paragraph [ref=f23e243]: Pages pinned to the student club wall.
+    - navigation "Mobile navigation" [ref=f23e244]:
+      - link "00 Home" [active] [ref=f23e245] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f23e246]: "00"
+        - text: Home
+      - link "01 About" [ref=f23e247] [cursor=pointer]:
+        - /url: /about
+        - generic [ref=f23e248]: "01"
+        - text: About
+      - link "02 Events" [ref=f23e251] [cursor=pointer]:
+        - /url: /events
+        - generic [ref=f23e252]: "02"
+        - text: Events
+      - link "03 Activities" [ref=f23e255] [cursor=pointer]:
+        - /url: /activities
+        - generic [ref=f23e256]: "03"
+        - text: Activities
+      - link "04 Club Moments" [ref=f23e259] [cursor=pointer]:
+        - /url: /gallery
+        - generic [ref=f23e260]: "04"
+        - text: Club Moments
+      - link "05 Leadership" [ref=f23e263] [cursor=pointer]:
+        - /url: /leadership
+        - generic [ref=f23e264]: "05"
+        - text: Leadership
+      - link "↗ Join on PIN" [ref=f23e267] [cursor=pointer]:
+        - /url: https://pin.gsu.edu/organization/cosmic
+        - generic [ref=f23e268]: ↗
+        - text: Join on PIN
+    - button "Close" [ref=f23e269]

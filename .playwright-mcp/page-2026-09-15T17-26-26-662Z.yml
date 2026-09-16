@@ -1,0 +1,61 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - link [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "Georgia State University" [ref=e6]
+    - main [ref=e7]:
+      - heading "Log in to continue" [level=5] [ref=e8]
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - generic [ref=e13]:
+            - generic [ref=e14]:
+              - generic [ref=e15]:
+                - strong [ref=e18]: CampusID
+                - link "Forgot?" [ref=e20] [cursor=pointer]:
+                  - /url: https://webservices.gsu.edu/lookup
+              - textbox [active] [ref=e21]
+            - generic [ref=e22]:
+              - generic [ref=e23]:
+                - strong [ref=e26]: Password
+                - link "Forgot?" [ref=e28] [cursor=pointer]:
+                  - /url: https://campusid.gsu.edu/
+              - textbox [ref=e29]
+            - button "Login" [ref=e31] [cursor=pointer]
+          - heading [level=6] [ref=e32]:
+            - generic [ref=e33]:
+              - text: By logging into this system, you agree to comply with
+              - link "university policies." [ref=e34] [cursor=pointer]:
+                - /url: http://paws.gsu.edu/policies/
+        - generic [ref=e35]:
+          - paragraph [ref=e36]:
+            - strong [ref=e39]: Secure Your Session
+          - generic [ref=e40]:
+            - paragraph [ref=e41]:
+              - text: University services that use SSO login will always direct you to a
+              - strong [ref=e42]:
+                - mark [ref=e43]: gsu.edu
+              - text: address.
+            - paragraph [ref=e44]: To protect your privacy, close your web browser when you are finished with your session.
+          - alert [ref=e45]:
+            - table [ref=e46]:
+              - rowgroup [ref=e47]:
+                - row [ref=e48]:
+                  - cell [ref=e49]:
+                    - img "Georgia State University" [ref=e50]
+                  - cell [ref=e51]:
+                    - strong [ref=e53]: Duo for CampusID Single Sign-On
+                    - text: Duo multifactor authentication is required to log into applications that use this single sign-on (SSO) screen.
+                    - link "Get Duo Support >" [ref=e54] [cursor=pointer]:
+                      - /url: https://technology.gsu.edu/technology-services/it-services/security/duo-multifactor-authentication/
+          - paragraph
+  - contentinfo [ref=e55]:
+    - generic [ref=e56]:
+      - link "Contact Georgia State" [ref=e58] [cursor=pointer]:
+        - /url: http://www.gsu.edu/contact-georgia-state/
+      - link "Privacy Statement" [ref=e60] [cursor=pointer]:
+        - /url: https://www.gsu.edu/privacy-notices/
+      - link "View legal statement" [ref=e62] [cursor=pointer]:
+        - /url: http://www.gsu.edu/legal-statement/
+      - link "©2026 Georgia State University." [ref=e64] [cursor=pointer]:
+        - /url: "#"
