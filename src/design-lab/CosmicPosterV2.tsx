@@ -30,7 +30,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from '@/components/ui/navigation-menu'
-import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Skeleton } from '@/components/ui/skeleton'
 import { fetchCosmicEvents, type CosmicEvent } from '@/pinEvents'
@@ -146,11 +145,11 @@ function PosterHeader({ compact = false }: { compact?: boolean }) {
     <header className={`poster-v2-header${compact ? ' is-compact' : ''}`}>
       <div className="poster-v2-campus"><div><span>GEORGIA STATE UNIVERSITY</span><span>STUDENT ORGANIZATION / ATLANTA</span></div></div>
       <div className="poster-v2-nav-shell">
-        <a className="poster-v2-brand" href="/design-lab/cosmic-poster-v2" aria-label="COSMIC poster prototype home">
+        <a className="poster-v2-brand" href="/" aria-label="COSMIC home">
           <img src={logo} alt="" />
           <span><strong>COSMIC</strong><small>Math · innovation · computing</small></span>
         </a>
-        <NavigationMenu className="poster-v2-desktop-nav" aria-label="Prototype pages">
+        <NavigationMenu className="poster-v2-desktop-nav" aria-label="Primary navigation">
           <NavigationMenuList>
             {pageLinks.map(([label, href], index) => (
               <NavigationMenuItem key={href}>
@@ -159,15 +158,14 @@ function PosterHeader({ compact = false }: { compact?: boolean }) {
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-        <a className="poster-v2-compare" href="/design-2-v2">View Design2V2 ↗</a>
+        <span className="poster-v2-compare-spacer" aria-hidden="true" />
         <Sheet>
-          <SheetTrigger render={<button className="poster-v2-menu" type="button" aria-label="Open prototype navigation" />}><Menu /></SheetTrigger>
+          <SheetTrigger render={<button className="poster-v2-menu" type="button" aria-label="Open site navigation" />}><Menu /></SheetTrigger>
           <SheetContent className="poster-v2-sheet">
             <SheetHeader><SheetTitle>COSMIC / INDEX</SheetTitle><SheetDescription>Pages pinned to the digital club wall.</SheetDescription></SheetHeader>
-            <nav aria-label="Mobile prototype pages">
-              <a href="/design-lab/cosmic-poster-v2"><span>00</span>Poster home</a>
+            <nav aria-label="Mobile navigation">
+              <a href="/"><span>00</span>Home</a>
               {pageLinks.map(([label, href], index) => <a href={href} key={href}><span>0{index + 1}</span>{label}<ArrowRight /></a>)}
-              <a href="/design-2-v2"><span>↗</span>Compare Design2V2</a>
             </nav>
           </SheetContent>
         </Sheet>
@@ -331,11 +329,11 @@ function PosterHome() {
               <AccordionItem value="bring"><AccordionTrigger>What should I bring?</AccordionTrigger><AccordionContent><p>A laptop can help at technical sessions, but curiosity and a question are enough for your first visit.</p></AccordionContent></AccordionItem>
               <AccordionItem value="contact"><AccordionTrigger>How do I follow or contact COSMIC?</AccordionTrigger><AccordionContent><p>Use Georgia State PIN for official organization and event information. Confirmed club contact details will be added when available.</p></AccordionContent></AccordionItem>
             </Accordion>
-            <div className="poster-v2-join-actions"><Button nativeButton={false} render={<a href="https://pin.gsu.edu/" target="_blank" rel="noreferrer" />}>Find COSMIC on PIN <ExternalLink /></Button><Button nativeButton={false} render={<a href="/events" />} variant="outline">Check the event board</Button></div>
+            <div className="poster-v2-join-actions"><Button nativeButton={false} render={<a href="https://pin.gsu.edu/organization/cosmic" target="_blank" rel="noreferrer" />}>Find COSMIC on PIN <ExternalLink /></Button><Button nativeButton={false} render={<a href="/events" />} variant="outline">Check the event board</Button></div>
           </div>
         </section>
       </main>
-      <footer className="poster-v2-footer"><img src={logo} alt="" /><div><strong>COSMIC</strong><span>Community of Students in Math, Innovation, and Computing</span><small>Georgia State University · Design exploration only</small></div><Separator orientation="vertical" /><a href="/design-2-v2">Compare with Design2V2 ↗</a></footer>
+      <footer className="poster-v2-footer"><img src={logo} alt="" /><div><strong>COSMIC</strong><span>Community of Students in Math, Innovation, and Computing</span><small>Georgia State University</small></div></footer>
     </div>
   )
 }

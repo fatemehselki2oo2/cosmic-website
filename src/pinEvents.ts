@@ -90,7 +90,7 @@ export async function fetchCosmicEvents(signal?: AbortSignal): Promise<CosmicEve
 
   const payload = await response.json() as PinSearchResponse
   return (payload.value ?? [])
-    .filter(event => Boolean(event.startsOn) && new Date(event.startsOn as string).getTime() >= now.getTime())
+    .filter(event => Boolean(event.startsOn && event.endsOn) && new Date(event.endsOn as string).getTime() >= now.getTime())
     .sort((a, b) => new Date(a.startsOn as string).getTime() - new Date(b.startsOn as string).getTime())
     .map(mapPinEvent)
     .filter((event): event is CosmicEvent => event !== null)

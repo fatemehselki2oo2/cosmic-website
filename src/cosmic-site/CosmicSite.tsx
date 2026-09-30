@@ -303,9 +303,22 @@ function LeadershipPage() {
   </>
 }
 
+function NotFoundPage() {
+  return <PageIntro
+    index="404"
+    kicker="PAGE NOT FOUND / LOST FIELD NOTE"
+    title="This note is not on the wall."
+    lead="The page you requested does not exist. Return to the COSMIC homepage or use the navigation to continue exploring the club."
+  >
+    <div className="poster-v2-route-actions">
+      <Button nativeButton={false} render={<a href="/" />}>Return to COSMIC home <ArrowRight /></Button>
+    </div>
+  </PageIntro>
+}
+
 function CosmicSite() {
   const path = normalizePath(window.location.pathname)
-  const page = path === '/about' ? <AboutPage /> : path === '/events' ? <EventsPage /> : path === '/activities' ? <ActivitiesPage /> : path === '/gallery' ? <GalleryPage /> : path === '/leadership' ? <LeadershipPage /> : <HomePage />
+  const page = path === '/' ? <HomePage /> : path === '/about' ? <AboutPage /> : path === '/events' ? <EventsPage /> : path === '/activities' ? <ActivitiesPage /> : path === '/gallery' ? <GalleryPage /> : path === '/leadership' ? <LeadershipPage /> : <NotFoundPage />
   return <div className="poster-v2-site cosmic-site"><SiteHeader /><main>{page}</main><SiteFooter /></div>
 }
 
