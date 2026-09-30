@@ -119,19 +119,12 @@
 .cosmic-opportunity-map div { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
 .cosmic-opportunity-map p { display: flex; align-items: center; gap: 8px; padding: 12px; border: 1px solid #0b1a38; font-weight: 800; }
 .cosmic-opportunity-map svg { width: 18px; }
-.cosmic-gallery-wall { position: relative; display: grid; grid-template-columns: 1.25fr .75fr 1fr; gap: 38px; padding: 110px 7% 150px; background-color: #d7d4ca; background-image: radial-gradient(rgba(11,26,56,.18) 1px, transparent 1px); background-size: 12px 12px; }
+.cosmic-gallery-wall { position: relative; display: grid; grid-template-columns: minmax(240px,.8fr) minmax(0,1.2fr); gap: 64px; align-items: center; min-height: 600px; padding: 110px 7% 150px; background-color: #d7d4ca; background-image: radial-gradient(rgba(11,26,56,.18) 1px, transparent 1px); background-size: 12px 12px; }
 .cosmic-gallery-note { align-self: start; position: relative; padding: 36px; background: #c7ff26; border: 2px solid #0b1a38; box-shadow: 9px 9px 0 #1b70f0; transform: rotate(-2deg); }
 .cosmic-gallery-note > svg { position: absolute; right: 16px; top: -22px; width: 50px; height: 50px; }
-.cosmic-gallery-note span, .cosmic-gallery-slot span { font: 800 .7rem/1 var(--font-mono, monospace); letter-spacing: .1em; }
+.cosmic-gallery-note span { font: 800 .7rem/1 var(--font-mono, monospace); letter-spacing: .1em; }
 .cosmic-gallery-note h2 { margin: 26px 0 12px; font-size: 2.5rem; line-height: .95; }
-.cosmic-gallery-slot { align-self: start; padding: 14px 14px 46px; background: #fff; border: 2px solid #0b1a38; box-shadow: 8px 8px 0 rgba(11,26,56,.2); }
-.cosmic-gallery-slot.tall { transform: rotate(1.5deg); }
-.cosmic-gallery-slot.wide-two { grid-column: 1 / 3; width: 82%; justify-self: end; transform: rotate(-1deg); }
-.cosmic-gallery-slot [data-slot="aspect-ratio"] > div { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; text-align: center; border: 2px dashed #0b1a38; background: repeating-linear-gradient(-45deg, #dff9ff 0 16px, #eefcff 16px 32px); }
-.cosmic-gallery-slot svg { width: 46px; height: 46px; }
-.cosmic-gallery-slot strong { font-size: 1.35rem; }
-.cosmic-gallery-slot small { font: 700 .65rem/1.3 var(--font-mono, monospace); }
-.cosmic-gallery-empty { grid-column: 3; align-self: end; background: #ffedf6; box-shadow: 8px 8px 0 #ff4fa3; }
+.cosmic-gallery-empty { min-height: 360px; background: #ffedf6; border: 2px solid #0b1a38; box-shadow: 8px 8px 0 #ff4fa3; }
 .cosmic-leadership-board { padding: 100px 7% 150px; }
 .cosmic-leadership-empty { min-height: 360px; margin-bottom: 80px; background: #dff9ff; box-shadow: 12px 12px 0 #33d6ff; }
 .cosmic-role-ledger { border-top: 4px solid #0b1a38; }
@@ -147,8 +140,9 @@
 .cosmic-footer nav { display: flex; gap: 8px 28px; flex-wrap: wrap; justify-content: end; }
 .cosmic-footer nav a { display: inline-flex; align-items: center; min-height: 44px; }
 .cosmic-footer a { color: inherit; }
-.cosmic-footer-inner > a:last-child { grid-column: 1 / -1; display: inline-flex; gap: 8px; align-items: center; width: max-content; min-height: 44px; font: 700 .75rem/1 var(--font-mono, monospace); }
-.cosmic-footer-inner > a:last-child svg { width: 15px; }
+.cosmic-footer-contact { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px 28px; flex-wrap: wrap; font: 700 .75rem/1 var(--font-mono, monospace); }
+.cosmic-footer-contact a { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; }
+.cosmic-footer-contact svg { width: 15px; }
 
 @media (max-width: 900px) {
   .cosmic-home-wall { min-height: auto; padding: 70px 6%; display: flex; flex-direction: column; gap: 42px; }
@@ -176,10 +170,8 @@
   .cosmic-workflow-heading { position: static; }
   .cosmic-activity-field { grid-template-columns: 1fr; }
   .cosmic-workshop-poster { grid-row: auto; }
-  .cosmic-gallery-wall { grid-template-columns: 1fr 1fr; }
-  .cosmic-gallery-note { grid-column: 1 / -1; }
-  .cosmic-gallery-slot.wide-two { grid-column: 1 / -1; }
-  .cosmic-gallery-empty { grid-column: 1 / -1; }
+  .cosmic-gallery-wall { grid-template-columns: 1fr; }
+  .cosmic-gallery-note, .cosmic-gallery-empty { grid-column: 1; }
 }
 
 @media (max-width: 600px) {
@@ -222,14 +214,14 @@
   .cosmic-project-note, .cosmic-opportunity-map { padding: 30px 22px; }
   .cosmic-opportunity-map div { grid-template-columns: 1fr; }
   .cosmic-gallery-wall { grid-template-columns: 1fr; padding: 80px 18px 120px; }
-  .cosmic-gallery-note, .cosmic-gallery-slot, .cosmic-gallery-slot.wide-two, .cosmic-gallery-empty { grid-column: 1; width: auto; transform: none; }
+  .cosmic-gallery-note, .cosmic-gallery-empty { grid-column: 1; width: auto; transform: none; }
   .cosmic-leadership-board { padding-inline: 18px; }
   .cosmic-role-ledger > div { flex-direction: column; }
   .cosmic-role-ledger article { grid-template-columns: 55px 1fr; gap: 14px; }
   .cosmic-role-ledger article p { grid-column: 2; }
   .cosmic-footer-inner { grid-template-columns: 1fr; }
   .cosmic-footer nav { justify-content: start; }
-  .cosmic-footer-inner > a:last-child { grid-column: 1; max-width: 100%; }
+  .cosmic-footer-contact { grid-column: 1; max-width: 100%; }
 }
 
 @media (max-width: 340px) {

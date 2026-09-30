@@ -1,7 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import {
   ArrowRight,
-  Braces,
   CalendarDays,
   ChevronRight,
   Code2,
@@ -19,9 +18,7 @@ import {
 } from 'lucide-react'
 import logo from '../../Final Logo Transparent.png'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Button } from '@/components/ui/button'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
 import { Item, ItemActions, ItemContent, ItemDescription, ItemGroup, ItemMedia, ItemTitle } from '@/components/ui/item'
 import {
@@ -37,6 +34,10 @@ import './cosmic-poster-v2.css'
 
 type EventState = 'loading' | 'upcoming' | 'empty' | 'error'
 
+const PIN_URL = 'https://pin.gsu.edu/organization/cosmic'
+const COSMIC_EMAIL = 'cosmicgastate@gmail.com'
+const ADVISOR_EMAIL = 'neranjan@gsu.edu'
+
 const pageLinks = [
   ['About', '/about'],
   ['Events', '/events'],
@@ -46,16 +47,10 @@ const pageLinks = [
 ] as const
 
 const activities = [
-  { signal: 'LEARN', label: 'Hands-on workshops', note: 'Python · data · scientific tools', icon: Wrench },
-  { signal: 'BUILD', label: 'Hackathons & projects', note: 'Build with a small team', icon: Code2 },
-  { signal: 'CONNECT', label: 'Guest speakers', note: 'Research and industry conversations', icon: MessagesSquare },
-  { signal: 'TEST', label: 'Scientific computing', note: 'Models · questions · experiments', icon: Sigma },
-]
-
-const momentFrames = [
-  { code: 'ARCHIVE SLOT / 01', title: 'The workshop table', detail: 'A wide frame for real hands-on sessions.', motif: 'logo', className: 'moment-wide' },
-  { code: 'ARCHIVE SLOT / 02', title: 'Project in progress', detail: 'Room for code, notebooks, and the mess between.', motif: 'code', className: 'moment-tall' },
-  { code: 'ARCHIVE SLOT / 03', title: 'People behind the work', detail: 'Only real COSMIC moments belong here.', motif: 'people', className: 'moment-square' },
+  { signal: 'WORKSHOPS', label: 'Hands-on workshops', note: 'Coding · data analysis · modeling', icon: Wrench },
+  { signal: 'BUILD', label: 'Hackathons & projects', note: 'Meaningful problems · creative ideas', icon: Code2 },
+  { signal: 'CONNECT', label: 'Guest speakers', note: 'Research · industry · career paths', icon: MessagesSquare },
+  { signal: 'COMMUNITY', label: 'Community connections', note: 'Peers · faculty · professionals', icon: Users },
 ]
 
 const officerRoles = [
@@ -71,28 +66,28 @@ const routeCopy: Record<string, { index: string; kicker: string; title: string; 
     kicker: 'About COSMIC',
     title: 'Scientific computing, outside the syllabus.',
     lead: 'COSMIC is a Georgia State undergraduate organization for students exploring the overlap between mathematics, science, computing, and innovation.',
-    notes: ['Learn practical tools with other students.', 'Build confidence through questions and experiments.', 'Beginners are welcome—curiosity is enough to begin.'],
+    notes: ['A community for undergraduates interested in math, science, and computing.', 'Hands-on workshops support skill development beyond the classroom.', 'COSMIC connects students with peers, faculty, and professionals.'],
   },
   '/events': {
     index: 'E–02',
     kicker: 'Events & meetings',
     title: 'The next thing on the wall.',
-    lead: 'Workshops, guest conversations, project nights, and meetings give students a practical way to learn and collaborate.',
-    notes: ['Upcoming events are sourced from Georgia State PIN.', 'Dates, locations, and RSVP information appear when available.', 'Past and expanded event views are prepared for the full page.'],
+    lead: 'Public COSMIC events are connected to the official organization listing on Georgia State PIN.',
+    notes: ['Upcoming events are sourced from Georgia State PIN.', 'Dates, locations, and RSVP information appear when available.', 'Past public events remain available in the event archive.'],
   },
   '/activities': {
     index: 'W–03',
-    kicker: 'Workshop & project archive',
-    title: 'Learn it. Test it. Build something with it.',
-    lead: 'COSMIC activities connect scientific computing practice to real questions, collaborative experiments, research exploration, and career conversations.',
-    notes: ['Hands-on workshops and data investigations.', 'Hackathons, collaborative projects, and computational modeling.', 'Guest speakers, networking, research, and career exploration.'],
+    kicker: 'Verified activity areas',
+    title: 'Scientific computing, skills, and connections.',
+    lead: 'COSMIC provides opportunities for skill development, professional connections, and real-world experience at the intersection of math, science, and computing.',
+    notes: ['Hands-on workshops in coding, data analysis, scientific computing, and computational modeling.', 'Hackathons and collaborative projects.', 'Guest speakers and connections with peers, faculty, and professionals.'],
   },
   '/gallery': {
     index: 'M–04',
     kicker: 'Club moments',
-    title: 'The wall should show what actually happened.',
-    lead: 'This route is prepared for real COSMIC photographs, dates, captions, event labels, and short student notes.',
-    notes: ['No stock or generated student photography is used.', 'Landscape and portrait images will keep their natural proportions.', 'The final layout will be curated rather than forced into square tiles.'],
+    title: 'Club moments coming soon.',
+    lead: 'No real COSMIC gallery media has been provided yet. This page will publish only real club photographs with factual event details.',
+    notes: ['No stock or generated student photography is used.', 'Each future item needs a verified activity or event name, date, and factual caption.', 'Real landscape and portrait images will keep their natural proportions.'],
   },
   '/leadership': {
     index: 'L–05',
@@ -200,7 +195,7 @@ function EventPreview({ expanded = false }: { expanded?: boolean }) {
     <Item className="poster-event-state"><ItemMedia><span>!</span></ItemMedia><ItemContent><ItemTitle>PIN could not be reached.</ItemTitle><ItemDescription>The event wall is temporarily offline. Check Georgia State PIN for the latest details.</ItemDescription></ItemContent></Item>
   )
   if (state === 'empty' || !event) return (
-    <Item className="poster-event-state"><ItemMedia><span>—</span></ItemMedia><ItemContent><ItemTitle>No upcoming event is posted yet.</ItemTitle><ItemDescription>The next workshop, meeting, or project session will be pinned here when it is published on PIN.</ItemDescription></ItemContent></Item>
+    <Item className="poster-event-state"><ItemMedia><span>—</span></ItemMedia><ItemContent><ItemTitle>No upcoming event is posted yet.</ItemTitle><ItemDescription>The next public COSMIC event will be pinned here when it is published on PIN.</ItemDescription></ItemContent></Item>
   )
   const date = formatEventDate(event.date)
   return (
@@ -234,10 +229,10 @@ function PosterHome() {
               <p className="poster-v2-kicker">COMMUNITY OF STUDENTS IN MATH, INNOVATION, AND COMPUTING</p>
               <p className="poster-v2-wordmark">COSMIC <span>GSU</span></p>
               <h1>Where math,<br />science, and<br /><em>code meet.</em></h1>
-              <p className="poster-v2-lead">A student-run Georgia State community for exploring scientific computing through workshops, projects, experiments, and the people doing the work.</p>
+              <p className="poster-v2-lead">A Georgia State undergraduate community exploring scientific computing through hands-on workshops, hackathons, collaborative projects, and guest speakers.</p>
               <div className="poster-v2-hero-actions"><Button nativeButton={false} render={<a href="#join" />}>Start here <ArrowRight /></Button><Button nativeButton={false} render={<a href="#event-board" />} variant="outline">See what’s next</Button></div>
-              <p className="poster-v2-beginner"><Sparkles /> No experience required. Bring a question, a laptop, or just your curiosity.</p>
-              <p className="poster-v2-hand-note" aria-hidden="true">start anywhere — follow the question ↘</p>
+              <p className="poster-v2-beginner"><Sparkles /> Skill development · professional connections · real-world experience.</p>
+              <p className="poster-v2-hand-note" aria-hidden="true">math + science + computing — beyond the classroom ↘</p>
             </div>
             <div className="poster-v2-hero-art"><div className="poster-v2-tape tape-top" /><div className="poster-v2-hero-stamp">STUDENT<br />BUILT</div><OrbitDiagram /><div className="poster-v2-spec"><span>FIELD NOTE / 00</span><code>community.learn(together)</code></div><img src={logo} alt="COSMIC logo" /></div>
           </div>
@@ -260,10 +255,10 @@ function PosterHome() {
             <p>ABOUT THE CLUB / NOTE 01</p>
             <h2>Scientific<br />computing,<br /><em>outside</em> the<br />syllabus.</h2>
             <div className="poster-v2-about-copy">
-              <p>COSMIC is where Georgia State students learn by doing—asking questions, trying technical tools, and working alongside people who are figuring it out too.</p>
-              <div><span>ASK MESSY QUESTIONS</span><span>LEARN IN PUBLIC</span><span>MAKE SOMETHING</span></div>
+              <p>COSMIC makes scientific computing accessible and engaging through opportunities that go beyond the classroom.</p>
+              <div><span>HANDS-ON WORKSHOPS</span><span>GUEST SPEAKERS</span><span>COLLABORATIVE PROJECTS</span></div>
             </div>
-            <div className="poster-v2-about-foot"><span>BEGINNER FRIENDLY / STUDENT RUN</span><span>LEARN → TEST → BUILD → SHARE</span></div>
+            <div className="poster-v2-about-foot"><span>UNDERGRADUATE COMMUNITY / ATLANTA CAMPUS</span><span>SKILLS · CONNECTIONS · EXPERIENCE</span></div>
           </article>
           <StickyNote href="/about" tone="cyan" eyebrow="NEW HERE?" detail="A short, beginner-friendly explanation of COSMIC, its purpose, and who it is for." note="01 / READ" className="about-note">What is<br />COSMIC?</StickyNote>
 
@@ -275,41 +270,28 @@ function PosterHome() {
           </article>
           <StickyNote href="/events" tone="pink" eyebrow="NEXT UP →" detail="The events page preserves live PIN loading, error, empty, and upcoming-event states." note="02 / GO" className="events-note">Events &<br />meetings</StickyNote>
 
-          <StickyNote href="/activities" tone="blue" eyebrow="WORKSHOP ARCHIVE" detail="Workshops, hackathons, projects, guest speakers, scientific computing, data, modeling, research, careers, and networking." note="03 / TRY" className="activities-note">Explore what<br />we do.</StickyNote>
+          <StickyNote href="/activities" tone="blue" eyebrow="COSMIC ACTIVITIES" detail="Hands-on workshops, scientific computing, hackathons, collaborative projects, guest speakers, and community connections." note="03 / VIEW" className="activities-note">Explore what<br />we do.</StickyNote>
           <article className="poster-v2-workshop-flyer">
             <span className="poster-v2-big-number">02</span>
-            <p>WHAT ARE WE BUILDING?</p>
-            <h2>TOOLS FOR<br /><em>CURIOUS</em><br />PEOPLE.</h2>
-            <div className="poster-v2-terminal"><span>INPUT</span><code>question + laptop + team</code><span>OUTPUT</span><code>something worth sharing</code></div>
+            <p>WAYS STUDENTS CAN ENGAGE</p>
+            <h2>SKILLS.<br /><em>IDEAS.</em><br />CONNECTIONS.</h2>
+            <div className="poster-v2-terminal"><span>FOCUS</span><code>scientific computing</code><span>FORMAT</span><code>workshops + speakers + projects</code></div>
             <ItemGroup className="poster-activity-list">
               {activities.map(({ signal, label, note, icon: Icon }, index) => <Item key={label} className={`activity-${index + 1}`}><ItemMedia><span>0{index + 1}</span><Icon /></ItemMedia><ItemContent><small>{signal}</small><ItemTitle>{label}</ItemTitle><ItemDescription>{note}</ItemDescription></ItemContent><ItemActions><ChevronRight /></ItemActions></Item>)}
             </ItemGroup>
           </article>
 
           <article className="poster-v2-moments-board">
-            <header><div><p>CLUB MOMENTS / ARCHIVE 04</p><h2>From the club.</h2></div><ImageIcon /></header>
-            <Carousel className="poster-v2-moments-carousel" opts={{ align: 'start' }} aria-label="Club moments preview">
-              <CarouselContent>
-                {momentFrames.map(({ code, title, detail, motif, className }) => (
-                  <CarouselItem className={className} key={code}>
-                    <figure className="poster-v2-photo-card">
-                      <AspectRatio ratio={motif === 'code' ? 3 / 4 : 4 / 3} className="poster-v2-photo">
-                        <div className="poster-v2-photo-empty">
-                          {motif === 'logo' ? <img src={logo} alt="" /> : motif === 'code' ? <Braces /> : <Users />}
-                          <span>{code}<br />AWAITING REAL CLUB MEDIA</span>
-                        </div>
-                      </AspectRatio>
-                      <figcaption><span>{code}</span><strong>{title}</strong><small>{detail}</small></figcaption>
-                    </figure>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <div className="poster-v2-carousel-controls"><CarouselPrevious /><span>DRAG / USE ARROWS</span><CarouselNext /></div>
-            </Carousel>
-            <div className="poster-v2-caption"><Paperclip /><p>No stock photos. No generated students.</p><span>Real club moments will be pinned here with dates and captions.</span></div>
-            <a className="poster-v2-text-link" href="/gallery">OPEN THE PHOTO WALL <ArrowRight /></a>
+            <header><div><p>CLUB MOMENTS / 04</p><h2>Club moments<br />coming soon.</h2></div><ImageIcon /></header>
+            <div className="poster-v2-moments-empty" role="status">
+              <ImageIcon />
+              <p>No real COSMIC gallery media has been added yet.</p>
+              <span>Real photographs will appear here only with a verified activity or event name, date, and factual caption.</span>
+            </div>
+            <div className="poster-v2-caption"><Paperclip /><p>No stock photos. No generated students.</p><span>Only real COSMIC photographs with factual event details will appear here.</span></div>
+            <a className="poster-v2-text-link" href="/gallery">OPEN CLUB MOMENTS <ArrowRight /></a>
           </article>
-          <StickyNote href="/gallery" tone="paper" eyebrow="FROM THE CLUB →" detail="A prepared route for real COSMIC photos in mixed proportions with event labels, dates, and student notes." note="04 / LOOK" className="moments-note">See what<br />we’ve been up to.</StickyNote>
+          <StickyNote href="/gallery" tone="paper" eyebrow="CLUB MOMENTS →" detail="Real COSMIC photographs will appear here only when factual event details are available." note="04 / LOOK" className="moments-note">Gallery<br />coming soon.</StickyNote>
 
           <StickyNote href="/leadership" tone="cyan" eyebrow="MEET THE STUDENTS" detail="Officer roles are ready; the prototype deliberately does not invent names, photos, majors, biographies, or social links." note="05 / MEET" className="leadership-note">Behind<br />COSMIC →</StickyNote>
           <article className="poster-v2-leadership-poster">
@@ -321,19 +303,19 @@ function PosterHome() {
         </section>
 
         <section className="poster-v2-join" id="join">
-          <div className="poster-v2-join-heading"><p className="poster-v2-kicker">YOUR FIRST MEETING / NO PREREQUISITES</p><h2>Curiosity is<br /><em>enough</em> to begin.</h2><p>COSMIC welcomes Georgia State undergraduates who want to explore mathematics, science, data, computing, research, and collaborative problem solving.</p><aside className="poster-v2-first-visit"><span>FIRST VISIT / FIELD NOTE</span><ol><li><b>01</b> Arrive curious.</li><li><b>02</b> Choose your pace.</li><li><b>03</b> Leave with a next step.</li></ol></aside></div>
+          <div className="poster-v2-join-heading"><p className="poster-v2-kicker">UNDERGRADUATE COMMUNITY / ATLANTA CAMPUS</p><h2>Connect with<br /><em>COSMIC.</em></h2><p>COSMIC is a community for undergraduates interested in the intersection of math, science, and computing.</p><aside className="poster-v2-first-visit"><span>VERIFIED ORGANIZATION INFO</span><ol><li><b>01</b> Atlanta Campus</li><li><b>02</b> No dues required</li><li><b>03</b> Official updates on PIN</li></ol></aside></div>
           <div className="poster-v2-faq-wrap">
             <Accordion defaultValue={['experience']} className="poster-v2-faq">
-              <AccordionItem value="experience"><AccordionTrigger>Do I need technical experience?</AccordionTrigger><AccordionContent><p>No. Workshops and meetings are designed to give beginners a practical place to start, while experienced students can take ideas further.</p></AccordionContent></AccordionItem>
-              <AccordionItem value="first"><AccordionTrigger>What happens at a first meeting?</AccordionTrigger><AccordionContent><p>Meet members, hear what is coming up, and choose whether to observe, follow a workshop, or join a conversation.</p></AccordionContent></AccordionItem>
-              <AccordionItem value="bring"><AccordionTrigger>What should I bring?</AccordionTrigger><AccordionContent><p>A laptop can help at technical sessions, but curiosity and a question are enough for your first visit.</p></AccordionContent></AccordionItem>
-              <AccordionItem value="contact"><AccordionTrigger>How do I follow or contact COSMIC?</AccordionTrigger><AccordionContent><p>Use Georgia State PIN for official organization and event information. Confirmed club contact details will be added when available.</p></AccordionContent></AccordionItem>
+              <AccordionItem value="experience"><AccordionTrigger>Who is COSMIC for?</AccordionTrigger><AccordionContent><p>COSMIC is an undergraduate student organization focused on the intersection of math, science, and computing.</p></AccordionContent></AccordionItem>
+              <AccordionItem value="first"><AccordionTrigger>Where is COSMIC based?</AccordionTrigger><AccordionContent><p>COSMIC is based at Georgia State University’s Atlanta Campus.</p></AccordionContent></AccordionItem>
+              <AccordionItem value="bring"><AccordionTrigger>Are membership dues required?</AccordionTrigger><AccordionContent><p>No dues are required.</p></AccordionContent></AccordionItem>
+              <AccordionItem value="contact"><AccordionTrigger>How do I follow or contact COSMIC?</AccordionTrigger><AccordionContent><dl className="poster-v2-contact-list"><div><dt>Email</dt><dd><a href={`mailto:${COSMIC_EMAIL}`}>{COSMIC_EMAIL}</a></dd></div><div><dt>On-Campus Advisor</dt><dd>Suranga Edirisinghe<br /><a href={`mailto:${ADVISOR_EMAIL}`}>{ADVISOR_EMAIL}</a></dd></div><div><dt>Campus</dt><dd>Atlanta Campus</dd></div><div><dt>Membership dues</dt><dd>No dues required</dd></div></dl></AccordionContent></AccordionItem>
             </Accordion>
-            <div className="poster-v2-join-actions"><Button nativeButton={false} render={<a href="https://pin.gsu.edu/organization/cosmic" target="_blank" rel="noreferrer" />}>Find COSMIC on PIN <ExternalLink /></Button><Button nativeButton={false} render={<a href="/events" />} variant="outline">Check the event board</Button></div>
+            <div className="poster-v2-join-actions"><Button nativeButton={false} render={<a href={PIN_URL} target="_blank" rel="noreferrer" />}>Find COSMIC on PIN <ExternalLink /></Button><Button nativeButton={false} render={<a href={`mailto:${COSMIC_EMAIL}`} />} variant="outline">Email COSMIC</Button></div>
           </div>
         </section>
       </main>
-      <footer className="poster-v2-footer"><img src={logo} alt="" /><div><strong>COSMIC</strong><span>Community of Students in Math, Innovation, and Computing</span><small>Georgia State University</small></div></footer>
+      <footer className="poster-v2-footer"><img src={logo} alt="" /><div><strong>COSMIC</strong><span>Community of Students in Math, Innovation, and Computing</span><small>Georgia State University · Atlanta Campus</small></div><div className="poster-v2-footer-contact"><a href={`mailto:${COSMIC_EMAIL}`}>{COSMIC_EMAIL}</a><a href={PIN_URL} target="_blank" rel="noreferrer">Official COSMIC page on PIN</a></div></footer>
     </div>
   )
 }
