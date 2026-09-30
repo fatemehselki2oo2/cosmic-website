@@ -5,23 +5,7 @@
       "destination": "https://pin.gsu.edu/api/discovery/event/search"
     },
     {
-      "source": "/about",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/events",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/activities",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/gallery",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/leadership",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
