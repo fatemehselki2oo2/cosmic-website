@@ -293,7 +293,7 @@ function PosterHome() {
           </article>
           <StickyNote href="/gallery" tone="paper" eyebrow="CLUB MOMENTS →" detail="Real COSMIC photographs will appear here only when factual event details are available." note="04 / LOOK" className="moments-note">Gallery<br />coming soon.</StickyNote>
 
-          <StickyNote href="/leadership" tone="cyan" eyebrow="MEET THE STUDENTS" detail="Officer roles are ready; the prototype deliberately does not invent names, photos, majors, biographies, or social links." note="05 / MEET" className="leadership-note">Behind<br />COSMIC →</StickyNote>
+          <StickyNote href="/leadership" tone="cyan" eyebrow="MEET THE STUDENTS" detail="Names, photos, majors, biographies, and social links will appear only after verified club information is provided." note="05 / MEET" className="leadership-note">Behind<br />COSMIC →</StickyNote>
           <article className="poster-v2-leadership-poster">
             <div className="poster-v2-vertical-label">STUDENT RUN / 05</div>
             <div className="poster-v2-leadership-intro"><div><p>WHO KEEPS COSMIC MOVING?</p><h2>The officer<br />team.</h2></div><blockquote>Organized by students.<br /><em>Built with everyone in the room.</em></blockquote></div>
