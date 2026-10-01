@@ -132,9 +132,8 @@
 .cosmic-role-ledger article { display: grid; grid-template-columns: 90px 1fr 1fr; gap: 30px; align-items: baseline; padding: 30px 0; border-top: 2px solid #0b1a38; }
 .cosmic-role-ledger article b { font: 900 2.5rem/1 var(--font-mono, monospace); color: #1b70f0; }
 .cosmic-role-ledger article h2 { font-size: clamp(1.7rem, 3vw, 3.4rem); }
-.cosmic-leader-profile { display: grid; grid-template-columns: 180px 1fr; gap: 36px; padding: 40px; border-bottom: 2px solid #0b1a38; }
-.cosmic-avatar { width: 160px !important; height: 160px !important; border-radius: 0 !important; }
-.cosmic-avatar * { border-radius: 0 !important; }
+.cosmic-role-ledger article ul { display: grid; gap: 8px; margin: 0; padding: 0; font-size: 1.05rem; line-height: 1.45; list-style: none; }
+.cosmic-role-ledger article li::before { content: '→'; margin-right: 10px; color: #ff4fa3; font-family: var(--font-mono, monospace); }
 .cosmic-footer { padding: 50px 7%; color: #dce8ff; background: #07152e; border-top: 1px solid #33d6ff; }
 .cosmic-footer-inner { display: grid; grid-template-columns: 1fr auto; gap: 34px; align-items: center; }
 .cosmic-footer nav { display: flex; gap: 8px 28px; flex-wrap: wrap; justify-content: end; }
@@ -218,7 +217,7 @@
   .cosmic-leadership-board { padding-inline: 18px; }
   .cosmic-role-ledger > div { flex-direction: column; }
   .cosmic-role-ledger article { grid-template-columns: 55px 1fr; gap: 14px; }
-  .cosmic-role-ledger article p { grid-column: 2; }
+  .cosmic-role-ledger article ul { grid-column: 2; }
   .cosmic-footer-inner { grid-template-columns: 1fr; }
   .cosmic-footer nav { justify-content: start; }
   .cosmic-footer-contact { grid-column: 1; max-width: 100%; }

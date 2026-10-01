@@ -241,7 +241,8 @@
 .poster-v2-role-list > div:nth-child(even) { margin-left: 8%; background: linear-gradient(90deg,rgba(24,199,216,.06),transparent); }
 .poster-v2-role-list span { color: var(--pv2-pink-text); font: .63rem ui-monospace,monospace; }
 .poster-v2-role-list strong { color: var(--pv2-navy); font-size: .95rem; }
-.poster-v2-role-list small { color: #70798a; font-size: .72rem; }
+.poster-v2-role-list ul { display: flex; gap: 4px 14px; flex-wrap: wrap; margin: 0; padding: 0; color: #70798a; font-size: .72rem; list-style: none; }
+.poster-v2-role-list li { line-height: 1.4; }
 .poster-v2-role-list i { color: var(--pv2-cyan); font-style: normal; }
 .poster-v2-data-note { margin: 22px 0 0; color: #788293; font-size: .71rem; }
 .leadership-note { grid-column: 1 / span 3; align-self: center; z-index: 3; margin-right: -54px; --rotation: 2.1deg; }
@@ -393,7 +394,7 @@
   .poster-v2-role-list > div:nth-child(even) { margin-left: 0; }
   .poster-v2-role-list span { grid-column: 1; grid-row: 1 / span 2; }
   .poster-v2-role-list strong { grid-column: 2; }
-  .poster-v2-role-list small { grid-column: 2; }
+  .poster-v2-role-list ul { grid-column: 2; }
   .poster-v2-role-list i { grid-column: 3; grid-row: 1 / span 2; }
   .poster-v2-join { gap: 50px; padding: 78px 16px; }
   .poster-v2-join h2 { font-size: clamp(3.7rem,16vw,5.1rem); }

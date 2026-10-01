@@ -53,12 +53,12 @@ const activities = [
   { signal: 'COMMUNITY', label: 'Community connections', note: 'Peers · faculty · professionals', icon: Users },
 ]
 
-const officerRoles = [
-  ['President', 'Club direction & community'],
-  ['Vice President', 'Programs & partnerships'],
-  ['Secretary', 'Communication & records'],
-  ['Treasurer', 'Resources & planning'],
-]
+const leadershipRoster = [
+  { role: 'Primary Contact', names: ['Hardik Saini'] },
+  { role: 'Second Contact', names: ['Vihaan Dhaka'] },
+  { role: 'On-Campus Advisor', names: ['Neranjan (Suranga) Edirisinghe'] },
+  { role: 'PIN Admins', names: ['Cassie Wilcox', 'Hardik Saini', 'Amari Blackman', 'Fatemeh Selki'] },
+] as const
 
 const routeCopy: Record<string, { index: string; kicker: string; title: string; lead: string; notes: string[] }> = {
   '/about': {
@@ -93,8 +93,8 @@ const routeCopy: Record<string, { index: string; kicker: string; title: string; 
     index: 'L–05',
     kicker: 'Student-led',
     title: 'The people who keep COSMIC moving.',
-    lead: 'Officer roles can be shown now; names, photos, academic interests, biographies, and links will only appear after real club information is provided.',
-    notes: officerRoles.map(([role, focus]) => `${role} — ${focus}`),
+    lead: 'Verified COSMIC contacts and PIN administrators, listed without invented profiles or titles.',
+    notes: leadershipRoster.map(({ role, names }) => `${role} — ${names.join(', ')}`),
   },
 }
 
@@ -293,12 +293,12 @@ function PosterHome() {
           </article>
           <StickyNote href="/gallery" tone="paper" eyebrow="CLUB MOMENTS →" detail="Real COSMIC photographs will appear here only when factual event details are available." note="04 / LOOK" className="moments-note">Gallery<br />coming soon.</StickyNote>
 
-          <StickyNote href="/leadership" tone="cyan" eyebrow="MEET THE STUDENTS" detail="Names, photos, majors, biographies, and social links will appear only after verified club information is provided." note="05 / MEET" className="leadership-note">Behind<br />COSMIC →</StickyNote>
+          <StickyNote href="/leadership" tone="cyan" eyebrow="MEET THE ROSTER" detail="Verified COSMIC contacts and PIN administrators." note="05 / MEET" className="leadership-note">Behind<br />COSMIC →</StickyNote>
           <article className="poster-v2-leadership-poster">
             <div className="poster-v2-vertical-label">STUDENT RUN / 05</div>
-            <div className="poster-v2-leadership-intro"><div><p>WHO KEEPS COSMIC MOVING?</p><h2>The officer<br />team.</h2></div><blockquote>Organized by students.<br /><em>Built with everyone in the room.</em></blockquote></div>
-            <div className="poster-v2-role-list">{officerRoles.map(([role, focus], index) => <div key={role}><span>0{index + 1}</span><strong>{role}</strong><small>{focus}</small><i aria-hidden="true">→</i></div>)}</div>
-            <p className="poster-v2-data-note">Names and profiles appear only when confirmed club information is available.</p>
+            <div className="poster-v2-leadership-intro"><div><p>WHO KEEPS COSMIC MOVING?</p><h2>The verified<br />roster.</h2></div><blockquote>Organized by students.<br /><em>Built with everyone in the room.</em></blockquote></div>
+            <div className="poster-v2-role-list">{leadershipRoster.map(({ role, names }, index) => <div key={role}><span>0{index + 1}</span><strong>{role}</strong><ul>{names.map(name => <li key={name}>{name}</li>)}</ul><i aria-hidden="true">→</i></div>)}</div>
+            <p className="poster-v2-data-note">Verified contacts and PIN administrators.</p>
           </article>
         </section>
 

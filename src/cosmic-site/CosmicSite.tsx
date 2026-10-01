@@ -21,7 +21,6 @@ import {
   Wrench,
 } from 'lucide-react'
 import logo from '../../Final Logo Transparent.png'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
@@ -45,24 +44,12 @@ const navLinks = [
   ['Leadership', '/leadership'],
 ] as const
 
-const officerRoles = [
-  ['President', 'Club direction & community'],
-  ['Vice President', 'Programs & partnerships'],
-  ['Secretary', 'Communication & records'],
-  ['Treasurer', 'Resources & planning'],
+const leadershipRoster = [
+  { role: 'Primary Contact', names: ['Hardik Saini'] },
+  { role: 'Second Contact', names: ['Vihaan Dhaka'] },
+  { role: 'On-Campus Advisor', names: ['Neranjan (Suranga) Edirisinghe'] },
+  { role: 'PIN Admins', names: ['Cassie Wilcox', 'Hardik Saini', 'Amari Blackman', 'Fatemeh Selki'] },
 ] as const
-
-type Leader = {
-  name: string
-  role: string
-  academicInterest?: string
-  description?: string
-  photo?: string
-  linkedin?: string
-  github?: string
-}
-
-const leaders: Leader[] = []
 
 function normalizePath(path: string) {
   return path === '/' ? path : path.replace(/\/$/, '')
@@ -290,16 +277,11 @@ function GalleryPage() {
   </>
 }
 
-function LeaderProfile({ leader }: { leader: Leader }) {
-  return <article className="cosmic-leader-profile"><Avatar className="cosmic-avatar" size="lg">{leader.photo && <AvatarImage src={leader.photo} alt="" />}<AvatarFallback>{leader.name.split(/\s+/).map(part => part[0]).join('').slice(0, 2)}</AvatarFallback></Avatar><div><span>{leader.role}</span><h2>{leader.name}</h2>{leader.academicInterest && <p>{leader.academicInterest}</p>}{leader.description && <p>{leader.description}</p>}<div>{leader.linkedin && <a href={leader.linkedin} aria-label={`${leader.name} on LinkedIn`}><ExternalLink /></a>}{leader.github && <a href={leader.github} aria-label={`${leader.name} on GitHub`}><ExternalLink /></a>}</div></div></article>
-}
-
 function LeadershipPage() {
   return <>
-    <PageIntro index="L–05" kicker="LEADERSHIP / STUDENT LED" title="The people who keep COSMIC moving." lead="This page is ready for real officer photos, names, academic interests, short introductions, and optional professional links—once the roster is confirmed." />
+    <PageIntro index="L–05" kicker="LEADERSHIP / VERIFIED ROSTER" title="The people who keep COSMIC moving." lead="Verified COSMIC contacts and PIN administrators, listed without invented profiles or titles." />
     <section className="cosmic-leadership-board">
-      {leaders.length ? <div className="cosmic-leader-list">{leaders.map(leader => <LeaderProfile leader={leader} key={`${leader.role}-${leader.name}`} />)}</div> : <Empty className="cosmic-empty cosmic-leadership-empty"><EmptyMedia><Users /></EmptyMedia><EmptyHeader><EmptyTitle>The officer roster has not been provided yet.</EmptyTitle><EmptyDescription>Names, photos, majors, biographies, and links will not be invented. Confirmed student-provided information can be added here.</EmptyDescription></EmptyHeader></Empty>}
-      <div className="cosmic-role-ledger"><div><span>ROLE LEDGER</span><p>What each office helps hold together</p></div>{officerRoles.map(([role, focus], index) => <article key={role}><b>0{index + 1}</b><h2>{role}</h2><p>{focus}</p></article>)}</div>
+      <div className="cosmic-role-ledger"><div><span>VERIFIED ROSTER</span><p>Contacts and PIN administrators</p></div>{leadershipRoster.map(({ role, names }, index) => <article key={role}><b>0{index + 1}</b><h2>{role}</h2><ul>{names.map(name => <li key={name}>{name}</li>)}</ul></article>)}</div>
     </section>
   </>
 }
